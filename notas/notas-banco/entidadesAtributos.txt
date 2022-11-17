@@ -1,0 +1,44 @@
+Entidades:
+    - Pizzas
+    - Bebidas
+    - Serviços
+    - Usuários
+
+Atributos Pizzas:
+    - Id *
+    - Nome *
+    - Slogan
+    - Descrição
+    - Promoção
+    - Ingredientes *
+    - Tamanho *
+    - Preço *
+    - Foto *
+
+Atributos Bebidas:
+    - Id *
+    - Nome *
+    - Promoção
+    - Ingredientes
+    - Tamanho *
+    - Preço *
+    - Slogan
+    - Descrição
+    - Status (Álcool) *
+    - Foto *
+
+Atributos Serviços:
+    - Id *
+    - Nome *
+    - Descrição 
+    - Foto
+
+Atributos Usuários:
+    - Id *
+    - Nome *
+    - Rg *
+    - Cpf *
+    - Email *
+    - Telefone *
+    - Status *
+    - Endereço *
