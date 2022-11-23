@@ -4,6 +4,8 @@ use db_pizza_time;
 
 show tables;
 
+drop table tbl_usuario;
+
 -- create table tbl_produto(
 -- 	id int not null auto_increment primary key,
 --     preco float not null,
@@ -107,6 +109,7 @@ select * from tbl_pizzaria;
 -- 		foreign key (id_pizzaria)
 --         references tbl_pizzaria (id)
 -- );
+
 select * from tbl_contato;
 
 -- create table tbl_servico(
