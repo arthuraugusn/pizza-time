@@ -136,10 +136,9 @@ select * from tbl_servico;
 --         references tbl_pizzaria (id)
 -- );
 
-insert into tbl_tamanho_pizza(tamanho)
-			values('normal');
+select * from tbl_tamanho_pizza;
             
-select * from tbl_tamanho_pizza;            
+select * from tbl_usuario;            
 
 select id, tamanho from tbl_tamanho_pizza order by id desc;
 
