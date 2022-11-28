@@ -53,8 +53,30 @@ app.get('/v1/produtos/pizza/tamanhos', cors(), async function(request, response)
     response.json(message)
 })
 
+//End-Point para listar um tamanho de pizza pelo id
+app.get('/v1/produto/pizza/tamanho/:id', cors(), async function(request, response){
+    let status
+    let message
+    let id = request.params.id
+
+    const controllerTamanho = require('./controller/controllerTamanhoPizza.js')
+
+    const tamanhoPizza = await controllerTamanho.buscaTamanhoId(id)
+
+    if(tamanhoPizza){
+        status = 200
+        message = tamanhoPizza
+    }else{
+        status = 400
+        message = MESSAGE_ERROR.INTERNAL_ERROR_DB
+    }
+
+    response.status(status)
+    response.json(message)
+})
+
 //End-point para adicionar um tamanho de pizza
-app.post('/v1/produtos/pizza/tamanho', cors(), async function(request, response){
+app.post('/v1/produto/pizza/tamanho',jsonParser, cors(), async function(request, response){
     let message
     let status
     let headerContentType
@@ -90,6 +112,69 @@ app.post('/v1/produtos/pizza/tamanho', cors(), async function(request, response)
 
 })
 
+//End-Point para deletar o tamanho da pizza
+app.delete('/v1/produto/pizza/tamanho/:id', jsonParser, cors(), async function(request, response){
+    let status
+    let message
+    let id = request.params.id
+
+    if(id != '' && id != undefined){
+        const controllerTamanho = require('./controller/controllerTamanhoPizza.js')
+        const deletarTamanho = await controllerTamanho.deletarTamanho(id)
+    
+        status = deletarTamanho.status
+        message = deletarTamanho.message
+    }else{
+    
+        status= 400
+        message = MESSAGE_ERROR.REQUIRED_ID
+    
+    }
+
+    response.status(status)
+    response.json(message)
+
+})
+
+//End-Point para atualizar um tamanho de uma pizza
+app.put('/v1/produto/pizza/tamanho/:id', jsonParser, cors(), async function(request, response){
+    let status
+    let message
+    let headerContentType
+
+    headerContentType = request.headers['content-type']
+
+    if(headerContentType== 'application/json'){
+        let dadosBody = request.body
+
+        if(JSON.stringify(dadosBody)!= '{}'){
+            let id = request.params.id
+
+            if(id != '' && id != undefined){
+                dadosBody.id = id
+
+                const controllerTamanho = require('./controller/controllerTamanhoPizza.js')
+
+                const attTamanho = await controllerTamanho.atualizarTamanho(dadosBody)
+
+                status = attTamanho.status
+                message = attTamanho.message
+            }else{
+                status = 400
+                message= MESSAGE_ERROR.REQUIRED_ID
+            }
+        }else{
+            status = 400
+            message = MESSAGE_ERROR.EMPTY_BODY
+        }
+    }else{
+        status = 415
+        message = MESSAGE_ERROR.CONTENT_TYPE
+    }
+
+    response.status(status)
+    response.json(message)
+})
 
 app.listen(8080, function(){
     console.log('Waiting...')

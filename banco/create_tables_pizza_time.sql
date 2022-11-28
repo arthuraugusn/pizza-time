@@ -142,3 +142,4 @@ select * from tbl_usuario;
 
 select id, tamanho from tbl_tamanho_pizza order by id desc;
 
+delete from tbl_tamanho_pizza where id = 1;
