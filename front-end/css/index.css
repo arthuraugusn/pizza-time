@@ -1,0 +1,11 @@
+body{
+    background-color: brown;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main{
+    display: flex;
+    flex-grow: 1;
+}
