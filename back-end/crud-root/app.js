@@ -4,6 +4,14 @@
 - AUTOR: Arthur Augusto da Silva Nunes, Milena Araújo
 - DATA DE CRIAÇÃO: 28/11/2022
 - VERSÃO: 1.0
+- AMOTAÇÕES:
+
+            npx prisma ->ve todos os comandos do prisma
+            npx prisma generate -> gera novamente a migração
+            npx prisma migrate dev -> conclui a migração com banco
+            
+            Usar no env:
+            DATABASE_URL= "mysql://root:12345678@localhost:3306/db_pizza_time"
 
 */
 
