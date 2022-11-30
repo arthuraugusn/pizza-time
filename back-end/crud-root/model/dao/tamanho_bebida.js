@@ -1,8 +1,8 @@
 /* 
 
-- OBJETIVO: Arquivo responsável pela manipulação de dados dos tamanhos das pizzas com o Banco de Dados. Insert, Update, Delete e Select
+- OBJETIVO: Arquivo responsável pela manipulação de dados dos tamanhos das bebidas com o Banco de Dados. Insert, Update, Delete e Select
 - AUTOR: Arthur Augusto da Silva Nunes, Milena Araújo
-- DATA DE CRIAÇÃO: 28/11/2022
+- DATA DE CRIAÇÃO: 29/11/2022
 - VERSÃO: 1.0
 
 */
@@ -10,10 +10,10 @@
 const {PrismaClient} = require('@prisma/client')
 const prisma = new PrismaClient()
 
-const selectAllTamanhoPizzas = async function(){
+const selectAllTamanhoBebidas = async function(){
     try {
 
-        let sql = `select * from tbl_tamanho_pizza order by id desc`
+        let sql = `select * from tbl_tamanho_bebida order by id desc`
 
         const rsTamanhos = await prisma.$queryRawUnsafe(sql)
 
@@ -26,10 +26,10 @@ const selectAllTamanhoPizzas = async function(){
     }
 }
 
-const insertTamanhoPizza = async function(nomeTamanho){
+const insertTamanhoBebida = async function(nomeTamanho){
     try {
 
-        let sql = `insert into tbl_tamanho_pizza(tamanho)
+        let sql = `insert into tbl_tamanho_bebida(tamanho)
                                     values('${nomeTamanho.tamanho}')`
 
         const rsTamanho = await prisma.$executeRawUnsafe(sql)
@@ -45,10 +45,10 @@ const insertTamanhoPizza = async function(nomeTamanho){
     }
 }
 
-const deleteTamanhoPizza = async function(id){
+const deleteTamanhoBebida = async function(id){
     try {
 
-        let sql = `delete from tbl_tamanho_pizza where id = ${id}`
+        let sql = `delete from tbl_tamanho_bebida where id = ${id}`
 
         const rsTamanho =await prisma.$queryRawUnsafe(sql)
 
@@ -63,10 +63,10 @@ const deleteTamanhoPizza = async function(id){
     }
 }
 
-const selectByIdTamanhoPizza = async function(id){
+const selectByIdTamanhoBebida = async function(id){
     try {
 
-        let sql = `select * from tbl_tamanho_pizza where id = ${id}`
+        let sql = `select * from tbl_tamanho_bebida where id = ${id}`
 
         const rsTamanho = await prisma.$queryRawUnsafe(sql)
 
@@ -81,9 +81,9 @@ const selectByIdTamanhoPizza = async function(id){
     }
 }
 
-const updateTamanhoPizza = async function(tamanho){
+const updateTamanhoBebida = async function(tamanho){
     try {
-        let sql = `update tbl_tamanho_pizza set tamanho = '${tamanho.tamanho}' where id= ${tamanho.id}`
+        let sql = `update tbl_tamanho_bebida set tamanho = '${tamanho.tamanho}' where id= ${tamanho.id}`
 
         const rsTamanho = await prisma.$executeRawUnsafe(sql)
 
@@ -98,9 +98,9 @@ const updateTamanhoPizza = async function(tamanho){
 }
 
 module.exports={
-    selectAllTamanhoPizzas,
-    insertTamanhoPizza,
-    deleteTamanhoPizza,
-    selectByIdTamanhoPizza,
-    updateTamanhoPizza
+    selectAllTamanhoBebidas,
+    insertTamanhoBebida,
+    deleteTamanhoBebida,
+    selectByIdTamanhoBebida,
+    updateTamanhoBebida
 }
