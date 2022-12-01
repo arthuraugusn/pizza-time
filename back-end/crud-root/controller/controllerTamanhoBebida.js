@@ -50,7 +50,7 @@ const deletarTamanhoBebida = async function(idTamanho){
     if(idTamanho == '' || idTamanho == undefined){
         return {status: 400, message:MESSAGE_ERROR.REQUIRED_ID}
     }else{
-        const deletarTamanho = require('../model/dao/tamanho_bebida')
+        const deletarTamanho = require('../model/dao/tamanho_bebida.js')
 
         const verificar = await deletarTamanho.selectByIdTamanhoBebida(idTamanho)
 

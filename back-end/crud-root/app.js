@@ -186,6 +186,156 @@ app.put('/v1/produto/pizza/tamanho/:id', jsonParser, cors(), async function(requ
     response.json(message)
 })
 
+/******************  TIPO DE PIZZA ***********************/
+
+//End-Point para listar todos os tipos de pizzas
+app.get('/v1/produtos/pizza/tipos', cors(), async function(request, response){
+    let status
+    let message
+
+    const controllerTipo = require('./controller/controllerTipoPizza.js')
+    
+    const listaTipos = await controllerTipo.listarTiposPizzas()
+
+    if(listaTipos){
+        
+        status = 200
+        message = listaTipos
+
+    }else{
+        
+        status = 400
+        message = MESSAGE_ERROR.NOT_FOUND_DB
+
+    }
+
+    response.status(status)
+    response.json(message)
+})
+
+//End-Point para listar um tipo de pizza pelo id
+app.get('/v1/produto/pizza/tipo/:id', cors(), async function(request, response){
+    let status
+    let message
+    let id = request.params.id
+
+    const controllerTipo = require('./controller/controllerTipoPizza.js')
+
+    const tipoPizza = await controllerTipo.buscaTipoIdPizza(id)
+
+    if(tipoPizza){
+        status = 200
+        message = tipoPizza
+    }else{
+        status = 400
+        message = MESSAGE_ERROR.INTERNAL_ERROR_DB
+    }
+
+    response.status(status)
+    response.json(message)
+})
+
+//End-point para adicionar um tipo de pizza
+app.post('/v1/produto/pizza/tipo',jsonParser, cors(), async function(request, response){
+    let message
+    let status
+    let headerContentType
+
+    headerContentType = request.headers['content-type']
+
+    if(headerContentType == 'application/json'){
+        let dadosBody = request.body
+
+        if(JSON.stringify(dadosBody)!='{}'){
+            const controllerTipo = require('./controller/controllerTipoPizza.js')
+
+            const rsNovoTipo = await controllerTipo.novoTipoPizza(dadosBody)
+
+            if(rsNovoTipo){
+                status = rsNovoTipo.status
+                message = rsNovoTipo.message
+            }else{
+                status = 400
+                message = rsNovoTipo
+            }
+        }else{
+            status = 400
+            message = MESSAGE_ERROR.NOT_FOUND_DB
+        }
+    }else{
+        status = 400
+        message = MESSAGE_ERROR.CONTENT_TYPE
+    }
+
+    response.status(status)
+    response.json(message)
+
+})
+
+//End-Point para deletar o tipo da pizza
+app.delete('/v1/produto/pizza/tipo/:id', jsonParser, cors(), async function(request, response){
+    let status
+    let message
+    let id = request.params.id
+
+    if(id != '' && id != undefined){
+        const controllerTipo = require('./controller/controllerTipoPizza.js')
+        const deletarTipo = await controllerTipo.deletarTipoPizza(id)
+    
+        status = deletarTipo.status
+        message = deletarTipo.message
+    }else{
+    
+        status= 400
+        message = MESSAGE_ERROR.REQUIRED_ID
+    
+    }
+
+    response.status(status)
+    response.json(message)
+
+})
+
+//End-Point para atualizar um tipo de pizza
+app.put('/v1/produto/pizza/tipo/:id', jsonParser, cors(), async function(request, response){
+    let status
+    let message
+    let headerContentType
+
+    headerContentType = request.headers['content-type']
+
+    if(headerContentType== 'application/json'){
+        let dadosBody = request.body
+
+        if(JSON.stringify(dadosBody)!= '{}'){
+            let id = request.params.id
+
+            if(id != '' && id != undefined){
+                dadosBody.id = id
+
+                const controllerTipo = require('./controller/controllerTipoPizza.js')
+
+                const atualizarTipo = await controllerTipo.atualizarTipoPizza(dadosBody)
+
+                status = atualizarTipo.status
+                message = atualizarTipo.message
+            }else{
+                status = 400
+                message= MESSAGE_ERROR.REQUIRED_ID
+            }
+        }else{
+            status = 400
+            message = MESSAGE_ERROR.EMPTY_BODY
+        }
+    }else{
+        status = 415
+        message = MESSAGE_ERROR.CONTENT_TYPE
+    }
+
+    response.status(status)
+    response.json(message)
+})
+
 /******************  TAMANHO DAS BEBIDAS ***********************/
 
 //End-Point para listar todos os tamanhos de bebidas
@@ -336,10 +486,451 @@ app.put('/v1/produto/bebida/tamanho/:id', jsonParser, cors(), async function(req
     response.json(message)
 })
 
+/******************  TIPO DE BEBIDA ***********************/
+
+//End-Point para listar todos os tipos de bebidas
+app.get('/v1/produtos/bebida/tipos', cors(), async function(request, response){
+    let status
+    let message
+
+    const controllerTipo = require('./controller/controllerTipoBebida.js')
+    
+    const listaTipos = await controllerTipo.listarTiposBebidas()
+
+    if(listaTipos){
+        
+        status = 200
+        message = listaTipos
+
+    }else{
+        
+        status = 400
+        message = MESSAGE_ERROR.NOT_FOUND_DB
+
+    }
+
+    response.status(status)
+    response.json(message)
+})
+
+//End-Point para listar um tipo de bebida pelo id
+app.get('/v1/produto/bebida/tipo/:id', cors(), async function(request, response){
+    let status
+    let message
+    let id = request.params.id
+
+    const controllerTipo = require('./controller/controllerTipoBebida.js')
+
+    const tipoPizza = await controllerTipo.buscaTipoIdBebida(id)
+
+    if(tipoPizza){
+        status = 200
+        message = tipoPizza
+    }else{
+        status = 400
+        message = MESSAGE_ERROR.INTERNAL_ERROR_DB
+    }
+
+    response.status(status)
+    response.json(message)
+})
+
+//End-point para adicionar um tipo de bebida
+app.post('/v1/produto/bebida/tipo',jsonParser, cors(), async function(request, response){
+    let message
+    let status
+    let headerContentType
+
+    headerContentType = request.headers['content-type']
+
+    if(headerContentType == 'application/json'){
+        let dadosBody = request.body
+
+        if(JSON.stringify(dadosBody)!='{}'){
+            const controllerTipo = require('./controller/controllerTipoBebida.js')
+
+            const rsNovoTipo = await controllerTipo.novoTipoBebida(dadosBody)
+
+            if(rsNovoTipo){
+                status = rsNovoTipo.status
+                message = rsNovoTipo.message
+            }else{
+                status = 400
+                message = rsNovoTipo
+            }
+        }else{
+            status = 400
+            message = MESSAGE_ERROR.NOT_FOUND_DB
+        }
+    }else{
+        status = 400
+        message = MESSAGE_ERROR.CONTENT_TYPE
+    }
+
+    response.status(status)
+    response.json(message)
+
+})
+
+//End-Point para deletar o tipo da bebida
+app.delete('/v1/produto/bebida/tipo/:id', jsonParser, cors(), async function(request, response){
+    let status
+    let message
+    let id = request.params.id
+
+    if(id != '' && id != undefined){
+        const controllerTipo = require('./controller/controllerTipoBebida.js')
+        const deletarTipo = await controllerTipo.deletarTipoBebida(id)
+    
+        status = deletarTipo.status
+        message = deletarTipo.message
+    }else{
+    
+        status= 400
+        message = MESSAGE_ERROR.REQUIRED_ID
+    
+    }
+
+    response.status(status)
+    response.json(message)
+
+})
+
+//End-Point para atualizar um tipo de bebida
+app.put('/v1/produto/bebida/tipo/:id', jsonParser, cors(), async function(request, response){
+    let status
+    let message
+    let headerContentType
+
+    headerContentType = request.headers['content-type']
+
+    if(headerContentType== 'application/json'){
+        let dadosBody = request.body
+
+        if(JSON.stringify(dadosBody)!= '{}'){
+            let id = request.params.id
+
+            if(id != '' && id != undefined){
+                dadosBody.id = id
+
+                const controllerTipo = require('./controller/controllerTipoBebida.js')
+
+                const atualizarTipo = await controllerTipo.atualizarTipoBebida(dadosBody)
+
+                status = atualizarTipo.status
+                message = atualizarTipo.message
+            }else{
+                status = 400
+                message= MESSAGE_ERROR.REQUIRED_ID
+            }
+        }else{
+            status = 400
+            message = MESSAGE_ERROR.EMPTY_BODY
+        }
+    }else{
+        status = 415
+        message = MESSAGE_ERROR.CONTENT_TYPE
+    }
+
+    response.status(status)
+    response.json(message)
+})
+
 /******************  ENDEREÇO DA PIZZARIA ***********************/
 
 //End-Point para listar o endereço da pizzaria
 app.get('/v1/pizzaria/endereco', cors(), async function(request, response){
+    let status
+    let message
+
+    const controllerEndereco = require('./controller/controllerEnderecoPizzaria.js')
+    
+    const listarEndereco = await controllerEndereco.listarEnderecoPizzaria()
+
+    if(listarEndereco){
+        
+        status = 200
+        message = listarEndereco
+
+    }else{
+        
+        status = 400
+        message = MESSAGE_ERROR.NOT_FOUND_DB
+
+    }
+
+    response.status(status)
+    response.json(message)
+})
+
+//End-Point para listar um endereço pelo id
+app.get('/v1/pizzaria/endereco/:id', cors(), async function(request, response){
+    let status
+    let message
+    let id = request.params.id
+
+    const controllerEndereco = require('./controller/controllerEnderecoPizzaria.js')
+
+    const endereco = await controllerEndereco.buscaEnderecoId(id)
+
+    if(endereco){
+        status = 200
+        message = endereco
+    }else{
+        status = 400
+        message = MESSAGE_ERROR.INTERNAL_ERROR_DB
+    }
+
+    response.status(status)
+    response.json(message)
+})
+
+//End-Point para atualizar o endereço da pizzaria
+app.put('/v1/pizzaria/endereco/:id',jsonParser, cors(), async function(request, response){
+    let status
+    let message
+    let headerContentType
+
+    headerContentType = request.headers['content-type']
+
+    if(headerContentType== 'application/json'){
+        let dadosBody = request.body
+
+        if(JSON.stringify(dadosBody)!= '{}'){
+            let id = request.params.id
+
+            if(id != '' && id != undefined){
+                dadosBody.id = id
+
+                const controllerEndereco = require('./controller/controllerEnderecoPizzaria.js')
+
+                const atualizarEndereco = await controllerEndereco.atualizarEndereco(dadosBody)
+
+                status = atualizarEndereco.status
+                message = atualizarEndereco.message
+            }else{
+                status = 400
+                message= MESSAGE_ERROR.REQUIRED_ID
+            }
+        }else{
+            status = 400
+            message = MESSAGE_ERROR.EMPTY_BODY
+        }
+    }else{
+        status = 415
+        message = MESSAGE_ERROR.CONTENT_TYPE
+    }
+
+    response.status(status)
+    response.json(message)
+})
+
+//End-Point para deletar o endereço da pizzaria
+app.delete('/v1/pizzaria/endereco/:id', cors(), async function(request, response){let status
+    let message
+    let id = request.params.id
+
+    if(id != '' && id != undefined){
+        const controllerEndereco = require('./controller/controllerEnderecoPizzaria.js')
+        const deletarEndereco = await controllerEndereco.deletarEndereco(id)
+    
+        status = deletarEndereco.status
+        message = deletarEndereco.message
+    }else{
+    
+        status= 400
+        message = MESSAGE_ERROR.REQUIRED_ID
+    
+    }
+
+    response.status(status)
+    response.json(message)
+
+})
+
+//End-Point para colocar o endereço da pizzaria
+app.post('/v1/pizzaria/endereco',jsonParser, cors(), async function(request, response){
+    let message
+    let status
+    let headerContentType
+
+    headerContentType = request.headers['content-type']
+
+    if(headerContentType == 'application/json'){
+        let dadosBody = request.body
+
+        if(JSON.stringify(dadosBody)!='{}'){
+            const controllerEndereco = require('./controller/controllerEnderecoPizzaria.js')
+
+            const rsNovoEndereco = await controllerEndereco.novoEndereco(dadosBody)
+
+            if(rsNovoEndereco){
+                status = rsNovoEndereco.status
+                message = rsNovoEndereco.message
+            }else{
+                status = 400
+                message = rsNovoEndereco
+            }
+        }else{
+            status = 400
+            message = MESSAGE_ERROR.NOT_FOUND_DB
+        }
+    }else{
+        status = 400
+        message = MESSAGE_ERROR.CONTENT_TYPE
+    }
+
+    response.status(status)
+    response.json(message)
+
+})
+
+/******************  PIZZARIA ***********************/
+//End-Point para listar o endereço da pizzaria
+app.get('/v1/pizzaria', cors(), async function(request, response){
+    let status
+    let message
+
+    const controllerEndereco = require('./controller/controllerEnderecoPizzaria.js')
+    
+    const listarEndereco = await controllerEndereco.listarEnderecoPizzaria()
+
+    if(listarEndereco){
+        
+        status = 200
+        message = listarEndereco
+
+    }else{
+        
+        status = 400
+        message = MESSAGE_ERROR.NOT_FOUND_DB
+
+    }
+
+    response.status(status)
+    response.json(message)
+})
+
+//End-Point para listar um endereço pelo id
+app.get('/v1/pizzaria/:id', cors(), async function(request, response){
+    let status
+    let message
+    let id = request.params.id
+
+    const controllerEndereco = require('./controller/controllerEnderecoPizzaria.js')
+
+    const endereco = await controllerEndereco.buscaEnderecoId(id)
+
+    if(endereco){
+        status = 200
+        message = endereco
+    }else{
+        status = 400
+        message = MESSAGE_ERROR.INTERNAL_ERROR_DB
+    }
+
+    response.status(status)
+    response.json(message)
+})
+
+//End-Point para atualizar o endereço da pizzaria
+app.put('/v1/pizzaria/:id',jsonParser, cors(), async function(request, response){
+    let status
+    let message
+    let headerContentType
+
+    headerContentType = request.headers['content-type']
+
+    if(headerContentType== 'application/json'){
+        let dadosBody = request.body
+
+        if(JSON.stringify(dadosBody)!= '{}'){
+            let id = request.params.id
+
+            if(id != '' && id != undefined){
+                dadosBody.id = id
+
+                const controllerEndereco = require('./controller/controllerEnderecoPizzaria.js')
+
+                const atualizarEndereco = await controllerEndereco.atualizarEndereco(dadosBody)
+
+                status = atualizarEndereco.status
+                message = atualizarEndereco.message
+            }else{
+                status = 400
+                message= MESSAGE_ERROR.REQUIRED_ID
+            }
+        }else{
+            status = 400
+            message = MESSAGE_ERROR.EMPTY_BODY
+        }
+    }else{
+        status = 415
+        message = MESSAGE_ERROR.CONTENT_TYPE
+    }
+
+    response.status(status)
+    response.json(message)
+})
+
+//End-Point para deletar o endereço da pizzaria
+app.delete('/v1/pizzaria/:id', cors(), async function(request, response){let status
+    let message
+    let id = request.params.id
+
+    if(id != '' && id != undefined){
+        const controllerEndereco = require('./controller/controllerEnderecoPizzaria.js')
+        const deletarEndereco = await controllerEndereco.deletarEndereco(id)
+    
+        status = deletarEndereco.status
+        message = deletarEndereco.message
+    }else{
+    
+        status= 400
+        message = MESSAGE_ERROR.REQUIRED_ID
+    
+    }
+
+    response.status(status)
+    response.json(message)
+
+})
+
+//End-Point para colocar as informações da pizzaria
+app.post('/v1/pizzaria',jsonParser, cors(), async function(request, response){
+    let message
+    let status
+    let headerContentType
+
+    headerContentType = request.headers['content-type']
+
+    if(headerContentType == 'application/json'){
+        let dadosBody = request.body
+
+        if(JSON.stringify(dadosBody)!='{}'){
+            const controllerEndereco = require('./controller/controllerEnderecoPizzaria.js')
+
+            const rsNovoEndereco = await controllerEndereco.novoEndereco(dadosBody)
+
+            if(rsNovoEndereco){
+                status = rsNovoEndereco.status
+                message = rsNovoEndereco.message
+            }else{
+                status = 400
+                message = rsNovoEndereco
+            }
+        }else{
+            status = 400
+            message = MESSAGE_ERROR.NOT_FOUND_DB
+        }
+    }else{
+        status = 400
+        message = MESSAGE_ERROR.CONTENT_TYPE
+    }
+
+    response.status(status)
+    response.json(message)
+
 })
 
 app.listen(8080, function(){

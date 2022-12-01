@@ -28,10 +28,34 @@ select * from tbl_produto;
 --     id_produto int not null,
 --     constraint FK_produto
 -- 		foreign key (id_produto)
---         references tbl_produto (id)
+--         references tbl_produto (id),
+--         
+-- 	id_tamanho_bebida int not null,
+--     constraint FK_tamanho_bebida
+-- 		foreign key (id_tamanho_bebida)
+--         references tbl_tamanho_bebida (id),
+--         
+-- 	id_tipo_bebida int not null,
+--     constraint FK_tipo_bebida
+-- 		foreign key (id_tipo_bebida)
+--         references tbl_tipo_bebida (id)
 -- );
 
 select * from tbl_bebida;
+
+-- create table tbl_tamanho_bebida(
+-- 	id int not null auto_increment primary key,
+--     tamanho varchar(30) not null
+-- );
+
+select * from tbl_tamanho_bebida;
+
+-- create table tbl_tipo_bebida(
+-- 	id int not null auto_increment primary key,
+--     tipo varchar(30) not null
+-- );
+
+select * from tbl_tipo_bebida;
 
 -- create table tbl_pizza(
 -- 	id int not null auto_increment primary key,
@@ -57,7 +81,7 @@ select * from tbl_pizza;
 
 -- create table tbl_tipo_pizza(
 -- 	id int not null auto_increment primary key,
---     nome varchar(30) not null
+--     tipo varchar(30) not null
 -- );
 
 select * from tbl_tipo_pizza;
