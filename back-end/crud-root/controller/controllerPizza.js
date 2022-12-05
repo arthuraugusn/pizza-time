@@ -113,9 +113,9 @@ const atualizarPizza = async function(pizza){
             const verificar = await atualizar.selectByIdPizza(pizza.id)
 
             if(verificar){
-                const rsTipo = await atualizar.updatePizza(pizza)
+                const rsPizza = await atualizar.updatePizza(pizza)
     
-                if(rsTipo){
+                if(rsPizza){
                     return {status: 200, message: MESSAGE_SUCCESS.UPDATE_ITEM}
                 } else{
                     return {status: 500, message: MESSAGE_ERROR.INTERNAL_ERROR_DB}
@@ -127,9 +127,9 @@ const atualizarPizza = async function(pizza){
         const verificar = await atualizar.selectByIdTipoPizza(tipoPizza.id)
 
             if(verificar){
-                const rsTipo = await atualizar.updateTipoPizza(tipoPizza)
+                const rsPizza = await atualizar.updateTipoPizza(tipoPizza)
     
-                if(rsTipo){
+                if(rsPizza){
                     return {status: 200, message: MESSAGE_SUCCESS.UPDATE_ITEM}
                 } else{
                     return {status: 500, message: MESSAGE_ERROR.INTERNAL_ERROR_DB}
