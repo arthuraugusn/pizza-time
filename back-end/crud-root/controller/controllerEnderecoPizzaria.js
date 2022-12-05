@@ -90,7 +90,7 @@ const buscaEnderecoId = async function(idEndereco){
 const atualizarEndereco = async function(endereco){
     if(endereco.id == '' || endereco.id == undefined){
         return {status: 400, message:MESSAGE_ERROR.REQUIRED_ID}
-    }if(endereco.rua =='' || endereco.rua == undefined || endereco.numero =='' || endereco.numero == undefined|| endereco.cep =='' || endereco.cep == undefined||endereco.uf =='' || endereco.uf == undefined||endereco.cidade =='' || endereco.cidade == undefined){
+    }else if(endereco.rua =='' || endereco.rua == undefined || endereco.numero =='' || endereco.numero == undefined|| endereco.cep =='' || endereco.cep == undefined||endereco.uf =='' || endereco.uf == undefined||endereco.cidade =='' || endereco.cidade == undefined){
         return {status:400, message: MESSAGE_ERROR.REQUIRED_FIELD}
     }else{
         const atualizarEndereco = require('../model/dao/endereco_pizzaria.js')

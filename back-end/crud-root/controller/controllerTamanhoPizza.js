@@ -13,9 +13,9 @@ const {MESSAGE_SUCCESS, MESSAGE_ERROR} = require('../modulos/config.js')
 const listarTamanhosPizzas = async function(){
     let tamanhosJSON = {}
 
-    const{selectAllTamanhosPizzas} = require('../model/dao/tamanho_pizzas.js')
+    const{selectAllTamanhoPizzas} = require('../model/dao/tamanho_pizzas.js')
 
-    const dadosTamanhos = await selectAllTamanhosPizzas()
+    const dadosTamanhos = await selectAllTamanhoPizzas()
 
     if(dadosTamanhos){
 
