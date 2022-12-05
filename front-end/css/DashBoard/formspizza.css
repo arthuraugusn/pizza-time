@@ -1,0 +1,76 @@
+body{
+    background-image: url(/front-end/img/pizza-pepperoni-table\ 1.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+header {
+    height: 156px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 500px;
+    padding-right: 500px;
+}
+
+button{
+    width: 152px;
+    height: 53px;
+    background: var(--pizza-vinho);
+    border: none;
+    border-radius: 20px;
+    font-weight: 200;
+    font-size: 30px;
+    text-align: center;
+    color: var(--white);
+}
+
+main{
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+.forms_login{
+    width: 1321px;
+    height: 555px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 20px;
+}
+
+#login{
+    display: flex;
+    flex-direction: column;
+}
+
+label{
+    font-weight: 200;
+    font-size: 30px;;
+    color: var(--white);
+}
+
+.campo_nome{
+    width: 401px;
+    height: 58px;
+    background: rgba(217, 162, 61, 0.7);
+    border: 3px solid var(--pizza-vinho);
+    border-radius: 20px;
+}
+
+#tamanho{
+    width: 217px;
+    height: 55px;
+    font-size: 30px;
+    font-weight: 200;
+    text-align: center;
+    color: var(--white);
+    appearance: none;
+    outline: none;
+    background: rgba(217, 162, 61, 0.7);
+    border: 3px solid var(--pizza-vinho);
+    border-radius: 20px;
+}

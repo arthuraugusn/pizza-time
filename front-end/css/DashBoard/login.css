@@ -35,7 +35,6 @@ main{
 }
 
 h1{
-    font-family: 'Inter', sans-serif;
     font-weight: 500;
     font-size: 40px;
     color: var(--white);
@@ -43,50 +42,36 @@ h1{
     margin-bottom: 63px;
 }
 
-.usuario-senha{
-    display: flex;
-    gap: 10px;
-    flex-direction: column;
-}
-
-.usuario-container{
+#login{
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
     gap: 5px;
 }
 
-.usuario-text{
-    font-family: 'Inter', sans-serif;
+.usuario{
     font-weight: 200;
     font-size: 30px;
     color: var(--white);
 }
 
-.usuario-barra{
+.campo_usuario{
     width: 401px;
     height: 58px;
+    border: none;
     background-color: var(--white);
     border-radius: 20px;
 }
 
-.senha-container{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 5px;
-}
-
-.senha-text{
-    font-family: 'Inter', sans-serif;
+.senha{
     font-weight: 200;
     font-size: 30px;
     color: var(--white);
 }
 
-.senha-barra{
+.campo_senha{
     width: 401px;
     height: 58px;
+    border: none; 
     background-color: var(--white);
     border-radius: 20px;
 }
@@ -98,7 +83,6 @@ button{
     background-color: var(--pizza-amarelo);
     border: none;
     border-radius: 20px;
-    font-family: 'Inter', sans-serif;
     font-weight: 200;
     font-size: 30px;
     text-align: center;
