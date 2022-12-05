@@ -786,6 +786,7 @@ app.post('/v1/pizzaria/endereco',jsonParser, cors(), async function(request, res
 })
 
 /******************  PIZZARIA ***********************/
+
 //End-Point para listar o endereço da pizzaria
 app.get('/v1/pizzaria', cors(), async function(request, response){
     let status
@@ -931,6 +932,304 @@ app.post('/v1/pizzaria',jsonParser, cors(), async function(request, response){
     response.status(status)
     response.json(message)
 
+})
+
+/******************  PRODUTOS ***********************/
+
+//End-Point para colocar os dados do produto
+app.post('/v1/produto',jsonParser, cors(), async function(request, response){
+    let message
+    let status
+    let headerContentType
+
+    headerContentType = request.headers['content-type']
+
+    if(headerContentType == 'application/json'){
+        let dadosBody = request.body
+
+        if(JSON.stringify(dadosBody)!='{}'){
+            const controllerProdutos = require('./controller/controllerProdutos.js')
+
+            const rsProduto = await controllerProdutos.novoProduto(dadosBody)
+
+            if(rsProduto){
+                status = rsProduto.status
+                message = rsProduto.message
+            }else{
+                status = 400
+                message = rsProduto
+            }
+        }else{
+            status = 400
+            message = MESSAGE_ERROR.NOT_FOUND_DB
+        }
+    }else{
+        status = 400
+        message = MESSAGE_ERROR.CONTENT_TYPE
+    }
+
+    response.status(status)
+    response.json(message)
+
+})
+
+//End-Point para listar os produtos da pizzaria
+app.get('/v1/produtos', cors(), async function(request, response){
+    let status
+    let message
+
+    const controllerProdutos = require('./controller/controllerProdutos.js')
+    
+    const listar = await controllerProdutos.listarPizzaria()
+
+    if(listar){
+        
+        status = 200
+        message = listar
+
+    }else{
+        
+        status = 400
+        message = MESSAGE_ERROR.NOT_FOUND_DB
+
+    }
+
+    response.status(status)
+    response.json(message)
+})
+
+//End-Point para listar um produto pelo id
+app.get('/v1/produto/:id', cors(), async function(request, response){
+    let status
+    let message
+    let id = request.params.id
+
+    const controllerProdutos = require('./controller/controllerProdutos.js')
+
+    const produto = await controllerProdutos.buscaDadosPizzariaId(id)
+
+    if(produto){
+        status = 200
+        message = produto
+    }else{
+        status = 400
+        message = MESSAGE_ERROR.INTERNAL_ERROR_DB
+    }
+
+    response.status(status)
+    response.json(message)
+})
+
+//End-Point para deletar um produto pelo id
+app.delete('/v1/produto/:id', cors(), async function(request, response){let status
+    let message
+    let id = request.params.id
+
+    if(id != '' && id != undefined){
+        const controllerProdutos = require('./controller/controllerProdutos.js')
+        const deletar = await controllerProdutos.deletarProduto(id)
+    
+        status = deletar.status
+        message = deletar.message
+    }else{
+    
+        status= 400
+        message = MESSAGE_ERROR.REQUIRED_ID
+    
+    }
+
+    response.status(status)
+    response.json(message)
+
+})
+
+//End-Point para atualizar o produto
+app.put('/v1/produto/:id',jsonParser, cors(), async function(request, response){
+    let status
+    let message
+    let headerContentType
+
+    headerContentType = request.headers['content-type']
+
+    if(headerContentType== 'application/json'){
+        let dadosBody = request.body
+
+        if(JSON.stringify(dadosBody)!= '{}'){
+            let id = request.params.id
+
+            if(id != '' && id != undefined){
+                dadosBody.id = id
+
+                const controllerProdutos = require('./controller/controllerProdutos.js')
+
+                const atualizar = await controllerProdutos.atualizarProduto(dadosBody)
+
+                status = atualizar.status
+                message = atualizar.message
+            }else{
+                status = 400
+                message= MESSAGE_ERROR.REQUIRED_ID
+            }
+        }else{
+            status = 400
+            message = MESSAGE_ERROR.EMPTY_BODY
+        }
+    }else{
+        status = 415
+        message = MESSAGE_ERROR.CONTENT_TYPE
+    }
+
+    response.status(status)
+    response.json(message)
+})
+
+/****************** PIZZAS ***********************/
+
+//End-Point para listar as pizzas cadastradas
+app.get('/v1/produtos/pizzas', cors(), async function(request, response){
+    let status
+    let message
+
+    const controllerPizza = require('./controller/controllerPizza.js')
+    
+    const listar = await controllerPizza.listarPizzas()
+
+    if(listar){
+        
+        status = 200
+        message = listar
+
+    }else{
+        
+        status = 400
+        message = MESSAGE_ERROR.NOT_FOUND_DB
+
+    }
+
+    response.status(status)
+    response.json(message)
+})
+
+//End-Point para listar uma pizza pelo id
+app.get('/v1/produto/pizza/:id', cors(), async function(request, response){
+    let status
+    let message
+    let id = request.params.id
+
+    const controllerPizza = require('./controller/controllerPizza.js')
+
+    const pizza = await controllerPizza.buscaIdPizza(id)
+
+    if(pizza){
+        status = 200
+        message = pizza
+    }else{
+        status = 400
+        message = MESSAGE_ERROR.INTERNAL_ERROR_DB
+    }
+
+    response.status(status)
+    response.json(message)
+})
+
+//End-Point para inserir uma nova pizza
+app.post('/v1/produto/pizza',jsonParser, cors(), async function(request, response){
+    let message
+    let status
+    let headerContentType
+
+    headerContentType = request.headers['content-type']
+
+    if(headerContentType == 'application/json'){
+        let dadosBody = request.body
+
+        if(JSON.stringify(dadosBody)!='{}'){
+            const controllerPizza = require('./controller/controllerPizza.js')
+
+            const rsPizza = await controllerPizza.novaPizza(dadosBody)
+
+            if(rsPizza){
+                status = rsPizza.status
+                message = rsPizza.message
+            }else{
+                status = 400
+                message = rsPizza
+            }
+        }else{
+            status = 400
+            message = MESSAGE_ERROR.NOT_FOUND_DB
+        }
+    }else{
+        status = 400
+        message = MESSAGE_ERROR.CONTENT_TYPE
+    }
+
+    response.status(status)
+    response.json(message)
+
+})
+
+//End-Point para deletar uma pizza pelo id
+app.delete('/v1/produto/pizza/:id', cors(), async function(request, response){let status
+    let message
+    let id = request.params.id
+
+    if(id != '' && id != undefined){
+        const controllerPizza = require('./controller/controllerPizza.js')
+        const deletar = await controllerPizza.deletarPizza(id)
+    
+        status = deletar.status
+        message = deletar.message
+    }else{
+    
+        status= 400
+        message = MESSAGE_ERROR.REQUIRED_ID
+    
+    }
+
+    response.status(status)
+    response.json(message)
+
+})
+
+//End-Point para atualizar uma pizza pelo id
+app.put('/v1/produto/pizza/:id',jsonParser, cors(), async function(request, response){
+    let status
+    let message
+    let headerContentType
+
+    headerContentType = request.headers['content-type']
+
+    if(headerContentType== 'application/json'){
+        let dadosBody = request.body
+
+        if(JSON.stringify(dadosBody)!= '{}'){
+            let id = request.params.id
+
+            if(id != '' && id != undefined){
+                dadosBody.id = id
+
+                const controllerPizza = require('./controller/controllerPizza.js')
+
+                const atualizar = await controllerPizza.atualizarPizza(dadosBody)
+
+                status = atualizar.status
+                message = atualizar.message
+            }else{
+                status = 400
+                message= MESSAGE_ERROR.REQUIRED_ID
+            }
+        }else{
+            status = 400
+            message = MESSAGE_ERROR.EMPTY_BODY
+        }
+    }else{
+        status = 415
+        message = MESSAGE_ERROR.CONTENT_TYPE
+    }
+
+    response.status(status)
+    response.json(message)
 })
 
 app.listen(8080, function(){

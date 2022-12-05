@@ -16,7 +16,7 @@ const selectAllInfosPizzarias = async function(){
         let sql = `select tbl_pizzaria.id as id_pizzaria, tbl_pizzaria.nome as nome_pizzaria, tbl_pizzaria.cnpj, tbl_pizzaria.telefone as telefone_pizzaria, tbl_pizzaria.celular as celular_pizzaria, tbl_endereco_pizzaria.rua as rua_pizzaria, tbl_endereco_pizzaria.numero as numero_pizzaria, tbl_endereco_pizzaria.cep, tbl_endereco_pizzaria.uf, tbl_endereco_pizzaria.cidade, tbl_pizzaria.id_endereco_pizzaria
                    from tbl_pizzaria
                    inner join tbl_endereco_pizzaria on
-                        tbl_endereco_pizzaria.id = tbl_pizzaria.id_endereco_pizzaria;`
+                        tbl_endereco_pizzaria.id = tbl_pizzaria.id_endereco_pizzaria order by tbl_pizzaria.id desc`
 
         const rsPizzaria = await prisma.$queryRawUnsafe(sql)
 
