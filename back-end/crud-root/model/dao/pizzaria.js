@@ -13,7 +13,7 @@ const prisma = new PrismaClient()
 const selectAllInfosPizzarias = async function(){
     try {
 
-        let sql = `select tbl_pizzaria.nome as nome_pizzaria, tbl_pizzaria.cnpj, tbl_pizzaria.telefone as telefone_pizzaria, tbl_pizzaria.celular as celular_pizzaria, tbl_endereco_pizzaria.rua as rua_pizzaria, tbl_endereco_pizzaria.numero as numero_pizzaria, tbl_endereco_pizzaria.cep, tbl_endereco_pizzaria.uf, tbl_endereco_pizzaria.cidade
+        let sql = `select tbl_pizzaria.id as id_pizzaria, tbl_pizzaria.nome as nome_pizzaria, tbl_pizzaria.cnpj, tbl_pizzaria.telefone as telefone_pizzaria, tbl_pizzaria.celular as celular_pizzaria, tbl_endereco_pizzaria.rua as rua_pizzaria, tbl_endereco_pizzaria.numero as numero_pizzaria, tbl_endereco_pizzaria.cep, tbl_endereco_pizzaria.uf, tbl_endereco_pizzaria.cidade, tbl_pizzaria.id_endereco_pizzaria
                    from tbl_pizzaria
                    inner join tbl_endereco_pizzaria on
                         tbl_endereco_pizzaria.id = tbl_pizzaria.id_endereco_pizzaria;`
@@ -69,7 +69,7 @@ const deleteInfosPizzaria = async function(id){
 const selectByIdInfosPizzaria = async function(id){
     try {
 
-        let sql = `select tbl_pizzaria.nome as nome_pizzaria, tbl_pizzaria.cnpj, tbl_pizzaria.telefone as telefone_pizzaria, tbl_pizzaria.celular as celular_pizzaria, tbl_endereco_pizzaria.rua as rua_pizzaria, tbl_endereco_pizzaria.numero as numero_pizzaria, tbl_endereco_pizzaria.cep, tbl_endereco_pizzaria.uf, tbl_endereco_pizzaria.cidade
+        let sql = `select tbl_pizzaria.id as id_pizzaria, tbl_pizzaria.nome as nome_pizzaria, tbl_pizzaria.cnpj, tbl_pizzaria.telefone as telefone_pizzaria, tbl_pizzaria.celular as celular_pizzaria, tbl_endereco_pizzaria.rua as rua_pizzaria, tbl_endereco_pizzaria.numero as numero_pizzaria, tbl_endereco_pizzaria.cep, tbl_endereco_pizzaria.uf, tbl_endereco_pizzaria.cidade, tbl_pizzaria.id_endereco_pizzaria
                     from tbl_pizzaria
                     inner join tbl_endereco_pizzaria on
                         tbl_endereco_pizzaria.id = tbl_pizzaria.id_endereco_pizzaria
@@ -90,12 +90,14 @@ const selectByIdInfosPizzaria = async function(id){
 
 const updateInfosPizzaria = async function(pizzaria){
     try {
-        let sql = `update tbl_pizzaria set nome = ${pizzaria.nome}, cnpj = ${pizzaria.cnpj}, telefone = ${pizzaria.telefone}, celular = ${pizzaria.celular}, id_endereco_pizzaria = ${pizzaria.id_endereco_pizzaria}
-                    where id= ${tamanho.id}`
+        let sql = `update tbl_pizzaria set nome = '${pizzaria.nome}', cnpj = '${pizzaria.cnpj}', telefone = '${pizzaria.telefone}', celular = '${pizzaria.celular}', id_endereco_pizzaria = ${pizzaria.id_endereco_pizzaria}
+                    where id= ${pizzaria.id}`
 
-        const rsTamanho = await prisma.$executeRawUnsafe(sql)
+        const rsPizzaria = await prisma.$executeRawUnsafe(sql)
 
-        if(rsTamanho){
+        console.log(rsPizzaria)
+
+        if(rsPizzaria){
             return true
         }else{
             return false
