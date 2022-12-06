@@ -643,7 +643,7 @@ app.get('/v1/pizzaria/endereco', cors(), async function(request, response){
     let status
     let message
 
-    const controllerBebidaria = require('./controller/controllerEnderecoPizzaria.js')
+    const controllerEndereco = require('./controller/controllerEnderecoPizzaria.js')
     
     const listarEndereco = await controllerEndereco.listarEnderecoPizzaria()
 
@@ -1361,6 +1361,155 @@ app.put('/v1/produto/bebida/:id',jsonParser, cors(), async function(request, res
                 const controllerBebida = require('./controller/controllerBebida.js')
 
                 const atualizar = await controllerBebida.atualizarBebida(dadosBody)
+
+                status = atualizar.status
+                message = atualizar.message
+            }else{
+                status = 400
+                message= MESSAGE_ERROR.REQUIRED_ID
+            }
+        }else{
+            status = 400
+            message = MESSAGE_ERROR.EMPTY_BODY
+        }
+    }else{
+        status = 415
+        message = MESSAGE_ERROR.CONTENT_TYPE
+    }
+
+    response.status(status)
+    response.json(message)
+})
+
+/****************** MENSAGEM USUÁRIO ***********************/
+
+//End-Point para listar as mensagens cadastradas
+app.get('/v1/pizzaria/contatos/mensagens', cors(), async function(request, response){
+    let status
+    let message
+
+    const controllerContato = require('./controller/controllerContato.js')
+    
+    const listar = await controllerContato.listarMensagens()
+
+    if(listar){
+        
+        status = 200
+        message = listar
+
+    }else{
+        
+        status = 400
+        message = MESSAGE_ERROR.NOT_FOUND_DB
+
+    }
+
+    response.status(status)
+    response.json(message)
+})
+
+//End-Point para listar uma mensagem pelo id
+app.get('/v1/pizzaria/contato/mensagem/:id', cors(), async function(request, response){
+    let status
+    let message
+    let id = request.params.id
+
+    const controllerContato = require('./controller/controllerContato.js')
+
+    const mensagem = await controllerContato.buscaIdMensagem(id)
+
+    if(mensagem){
+        status = 200
+        message = mensagem
+    }else{
+        status = 400
+        message = MESSAGE_ERROR.INTERNAL_ERROR_DB
+    }
+
+    response.status(status)
+    response.json(message)
+})
+
+//End-Point para inserir uma nova mensagem do usuário
+app.post('/v1/pizzaria/contato/mensagem',jsonParser, cors(), async function(request, response){
+    let message
+    let status
+    let headerContentType
+
+    headerContentType = request.headers['content-type']
+
+    if(headerContentType == 'application/json'){
+        let dadosBody = request.body
+
+        if(JSON.stringify(dadosBody)!='{}'){
+            const controllerContato = require('./controller/controllerContato.js')
+
+            const rsContato = await controllerContato.novaMensagem(dadosBody)
+
+            if(rsContato){
+                status = rsContato.status
+                message = rsContato.message
+            }else{
+                status = 400
+                message = rsContato
+            }
+        }else{
+            status = 400
+            message = MESSAGE_ERROR.NOT_FOUND_DB
+        }
+    }else{
+        status = 400
+        message = MESSAGE_ERROR.CONTENT_TYPE
+    }
+
+    response.status(status)
+    response.json(message)
+
+})
+
+//End-Point para deletar uma mensagem pelo id
+app.delete('/v1/pizzaria/contato/mensagem/:id', cors(), async function(request, response){let status
+    let message
+    let id = request.params.id
+
+    if(id != '' && id != undefined){
+        const controllerContato = require('./controller/controllerContato.js')
+        const deletar = await controllerContato.deletarMensagem(id)
+    
+        status = deletar.status
+        message = deletar.message
+    }else{
+    
+        status= 400
+        message = MESSAGE_ERROR.REQUIRED_ID
+    
+    }
+
+    response.status(status)
+    response.json(message)
+
+})
+
+//End-Point para atualizar uma mensagem pelo id
+app.put('/v1/pizzaria/contato/mensagem/:id',jsonParser, cors(), async function(request, response){
+    let status
+    let message
+    let headerContentType
+
+    headerContentType = request.headers['content-type']
+
+    if(headerContentType== 'application/json'){
+        let dadosBody = request.body
+
+        if(JSON.stringify(dadosBody)!= '{}'){
+            let id = request.params.id
+
+            if(id != '' && id != undefined){
+                dadosBody.id = id
+
+                const controllerContato = require('./controller/controllerContato.js')
+
+                const atualizar = await controllerContato.atualizarMensagem(dadosBody)
 
                 status = atualizar.status
                 message = atualizar.message
