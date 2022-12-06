@@ -643,7 +643,7 @@ app.get('/v1/pizzaria/endereco', cors(), async function(request, response){
     let status
     let message
 
-    const controllerPizzaria = require('./controller/controllerEnderecoPizzaria.js')
+    const controllerBebidaria = require('./controller/controllerEnderecoPizzaria.js')
     
     const listarEndereco = await controllerEndereco.listarEnderecoPizzaria()
 
@@ -1212,6 +1212,155 @@ app.put('/v1/produto/pizza/:id',jsonParser, cors(), async function(request, resp
                 const controllerPizza = require('./controller/controllerPizza.js')
 
                 const atualizar = await controllerPizza.atualizarPizza(dadosBody)
+
+                status = atualizar.status
+                message = atualizar.message
+            }else{
+                status = 400
+                message= MESSAGE_ERROR.REQUIRED_ID
+            }
+        }else{
+            status = 400
+            message = MESSAGE_ERROR.EMPTY_BODY
+        }
+    }else{
+        status = 415
+        message = MESSAGE_ERROR.CONTENT_TYPE
+    }
+
+    response.status(status)
+    response.json(message)
+})
+
+/****************** BEBIDAS ***********************/
+
+//End-Point para listar as bebidas cadastradas
+app.get('/v1/produtos/bebidas', cors(), async function(request, response){
+    let status
+    let message
+
+    const controllerBebida = require('./controller/controllerBebida.js')
+    
+    const listar = await controllerBebida.listarBebidas()
+
+    if(listar){
+        
+        status = 200
+        message = listar
+
+    }else{
+        
+        status = 400
+        message = MESSAGE_ERROR.NOT_FOUND_DB
+
+    }
+
+    response.status(status)
+    response.json(message)
+})
+
+//End-Point para listar uma bebida pelo id
+app.get('/v1/produto/bebida/:id', cors(), async function(request, response){
+    let status
+    let message
+    let id = request.params.id
+
+    const controllerBebida = require('./controller/controllerBebida.js')
+
+    const bebida = await controllerBebida.buscaIdBebida(id)
+
+    if(bebida){
+        status = 200
+        message = bebida
+    }else{
+        status = 400
+        message = MESSAGE_ERROR.INTERNAL_ERROR_DB
+    }
+
+    response.status(status)
+    response.json(message)
+})
+
+//End-Point para inserir uma nova bebida
+app.post('/v1/produto/bebida',jsonParser, cors(), async function(request, response){
+    let message
+    let status
+    let headerContentType
+
+    headerContentType = request.headers['content-type']
+
+    if(headerContentType == 'application/json'){
+        let dadosBody = request.body
+
+        if(JSON.stringify(dadosBody)!='{}'){
+            const controllerBebida = require('./controller/controllerBebida.js')
+
+            const rsBebida = await controllerBebida.novaBebida(dadosBody)
+
+            if(rsBebida){
+                status = rsBebida.status
+                message = rsBebida.message
+            }else{
+                status = 400
+                message = rsBebida
+            }
+        }else{
+            status = 400
+            message = MESSAGE_ERROR.NOT_FOUND_DB
+        }
+    }else{
+        status = 400
+        message = MESSAGE_ERROR.CONTENT_TYPE
+    }
+
+    response.status(status)
+    response.json(message)
+
+})
+
+//End-Point para deletar uma bebida pelo id
+app.delete('/v1/produto/bebida/:id', cors(), async function(request, response){let status
+    let message
+    let id = request.params.id
+
+    if(id != '' && id != undefined){
+        const controllerBebida = require('./controller/controllerBebida.js')
+        const deletar = await controllerBebida.deletarBebida(id)
+    
+        status = deletar.status
+        message = deletar.message
+    }else{
+    
+        status= 400
+        message = MESSAGE_ERROR.REQUIRED_ID
+    
+    }
+
+    response.status(status)
+    response.json(message)
+
+})
+
+//End-Point para atualizar uma bebida pelo id
+app.put('/v1/produto/bebida/:id',jsonParser, cors(), async function(request, response){
+    let status
+    let message
+    let headerContentType
+
+    headerContentType = request.headers['content-type']
+
+    if(headerContentType== 'application/json'){
+        let dadosBody = request.body
+
+        if(JSON.stringify(dadosBody)!= '{}'){
+            let id = request.params.id
+
+            if(id != '' && id != undefined){
+                dadosBody.id = id
+
+                const controllerBebida = require('./controller/controllerBebida.js')
+
+                const atualizar = await controllerBebida.atualizarBebida(dadosBody)
 
                 status = atualizar.status
                 message = atualizar.message
