@@ -1,0 +1,36 @@
+body{
+    background-image: url(/front-end/img/pizza-pepperoni-table\ 1.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+header {
+    height: 156px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 500px;
+    padding-right: 500px;
+}
+
+button{
+    width: 152px;
+    height: 53px;
+    background: var(--pizza-vinho);
+    border: none;
+    border-radius: 20px;
+    font-weight: 200;
+    font-size: 30px;
+    text-align: center;
+    color: var(--white);
+}
+
+main{
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+}

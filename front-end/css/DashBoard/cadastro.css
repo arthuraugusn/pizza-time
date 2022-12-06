@@ -1,0 +1,59 @@
+body{
+    background-image: url(/front-end/img/pizza-pepperoni-table\ 1.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+header {
+    height: 156px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 500px;
+    padding-right: 500px;
+}
+
+main{
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+h1{
+    font-weight: 500;
+    font-size: 50px;
+    color: var(--white);
+}
+
+.buttons{
+    display: flex;
+    gap: 80px;
+    margin-top: 85px;
+}
+
+.produto{
+    width: 310px;
+    height: 80px;
+    background: var(--pizza-laranja);
+    border-radius: 20px;
+    border: none;
+    font-weight: 400;
+    font-size: 45px;
+    color: var(--white);
+}
+
+.usuario{
+    width: 310px;
+    height: 80px;
+    background: var(--pizza-laranja);
+    border-radius: 20px;
+    border: none;
+    font-weight: 400;
+    font-size: 45px;
+    color: var(--white);
+}
