@@ -13,7 +13,7 @@ const prisma = new PrismaClient()
 const selectAllBebidas = async function(){
     try {
 
-        let sql = `select tbl_bebida.id as id_bebida, tbl_bebida.ml as mililitros_bebida, tbl_produto.nome as nome_bebida, tbl_produto.preco, tbl_produto.descricao, tbl_tamanho_bebida.tamanho as tamanho_bebida, tbl_tipo_bebida.tipo as tipo_bebida
+        let sql = `select tbl_bebida.id as id_bebida,tbl_produto.foto, tbl_bebida.ml as mililitros_bebida, tbl_produto.nome as nome_bebida, tbl_produto.preco, tbl_produto.descricao, tbl_tamanho_bebida.tamanho as tamanho_bebida, tbl_tipo_bebida.tipo as tipo_bebida
                     from tbl_bebida
                         inner join tbl_tamanho_bebida on
                             tbl_tamanho_bebida.id = tbl_bebida.id_tamanho_bebida

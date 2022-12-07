@@ -7,33 +7,27 @@ body{
     height: 100vh;
 }
 
-header {
-    height: 156px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-left: 500px;
-    padding-right: 500px;
-}
-
 main{
     display: flex;
     flex-grow: 1;
     align-items: center;
     justify-content: center;
+    gap: 80px;
     flex-direction: column;
 }
 
 h1{
     font-weight: 500;
-    font-size: 50px;
+    font-size: 4.5rem;
+    text-align: center;
     color: var(--white);
 }
 
 .buttons{
     display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 80px;
-    margin-top: 85px;
 }
 
 .produto{
@@ -56,4 +50,10 @@ h1{
     font-weight: 400;
     font-size: 45px;
     color: var(--white);
+}
+
+@media(max-width:1200px){
+    .buttons{
+        flex-direction: column;
+    }
 }

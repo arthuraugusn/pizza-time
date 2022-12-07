@@ -7,15 +7,6 @@ body{
     height: 100vh;
 }
 
-header {
-    height: 156px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-left: 500px;
-    padding-right: 500px;
-}
-
 button{
     width: 152px;
     height: 53px;

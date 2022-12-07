@@ -13,7 +13,7 @@
 </head>
 <body>
     <header>
-        <a href="./login.html">
+        <a href="./login.html" class="link_header">
             <img src="../img/logo-header.svg" alt="logo">
         </a>
     </header>
@@ -21,12 +21,18 @@
         <div class="container-login">
             <h1>LOGIN</h1>
             <div class="forms_login">
-                <form id="login" autocomplete="off">
-                    <label class="usuario">Usuário:</label><input type="text" class="campo_usuario">
-                    <label class="senha">Senha:</label><input type="password" class="campo_senha">
+                <form id="login" class="login" autocomplete="off">
+                    <div class="user">
+                        <label class="usuario">Usuário:</label>
+                        <input type="text" class="campo_usuario">
+                    </div>
+                    <div class="password">
+                        <label class="senha">Senha:</label>
+                        <input type="password" class="campo_senha">
+                    </div>
                 </form>
             </div>
-            <a href="./cadastro.html">
+            <a href="./cadastro.html" class="link_button">
                 <button>ENTRAR</button>
             </a>
         </div>
