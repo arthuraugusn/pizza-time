@@ -1,8 +1,11 @@
 header {
     height: 156px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: fixed;   
+    background-color: transparent;
     padding-left: 500px;
     padding-right: 500px;
 }
