@@ -1,0 +1,118 @@
+body{
+    min-height: 100vh;
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    background-image: url(../img/background\ pg1.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+main{
+    display: flex;
+    flex-direction: column ;
+    width: 100vw;
+    height: 100vh;
+} 
+
+section {
+    min-height: 100vh;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+
+.inicio{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.slogan_inicio_1{
+    font-style: italic;
+    font-weight: 100;
+    font-size: 40px;
+    color: var(--white);
+    display: flex;
+    justify-content: center;
+}
+
+.slogan_inicio_2{
+    font-style: italic;
+    font-weight: 100;
+    font-size: 40px;
+    color: var(--white);
+    display: flex;
+    justify-content: center;
+}
+
+.button_inicio{
+    width: 230px;
+    height: 60px;
+    background: var(--pizza-amarelo);
+    border: 1px solid #000000;
+    border-radius: 50px;
+    font-style: italic;
+    font-weight: 100;
+    font-size: 30px;
+    text-align: center;
+    color: #000000;
+}
+
+.promocoes{
+    background-color: var(--white);
+    min-height: 600px;
+}
+
+.title_promocoes{
+    font-style: italic;
+    font-weight: 400;
+    font-size: 40px;
+    color: var(--pizza-vinho);
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+}
+
+.cardapio{
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../img/Baked-Feta-Pizza-Featured-Image\ 1.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-left: 112px;
+    padding-right: 112px;
+}
+
+.title_cardapio{
+    font-style: italic;
+    font-weight: 400;
+    font-size: 40px;
+    color: var(--white);
+    text-shadow: 0px 4px 4px var(--pizza-vinho);
+    display: flex;
+    justify-content: center;
+    padding-top: 60px;
+}
+
+.subtitle_favoritas{
+    font-style: italic;
+    font-weight: 400;
+    font-size: 30px;
+    color: var(--white);
+    text-shadow: 0px 4px 4px var(--pizza-vinho);
+    padding-top: 30px;
+}
+
+.servicos{
+    background-color: var(--white);
+    min-height: 236px;
+}
+
+.contato{
+    background-image: url(../img/Baked-Feta-Pizza-Featured-Image\ 1.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
