@@ -1,8 +1,8 @@
 /* 
 
-- OBJETIVO: Arquivo responsável pela manipulação de dados dos tamanhos das pizzas com o Banco de Dados. Insert, Update, Delete e Select
+- OBJETIVO: Arquivo responsável pela manipulação de usuários com o Banco de Dados. Insert, Update, Delete e Select
 - AUTOR: Arthur Augusto da Silva Nunes, Milena Araújo
-- DATA DE CRIAÇÃO: 28/11/2022
+- DATA DE CRIAÇÃO: 05/12/2022
 - VERSÃO: 1.0
 
 */
@@ -10,15 +10,15 @@
 const {PrismaClient} = require('@prisma/client')
 const prisma = new PrismaClient()
 
-const selectAllTamanhoPizzas = async function(){
+const selectAllUsuarios = async function(){
     try {
 
-        let sql = `select * from tbl_tamanho_pizza order by id desc`
+        let sql = `select * from tbl_usuario order by id desc`
 
-        const rsTamanhos = await prisma.$queryRawUnsafe(sql)
+        const rsUsuarios = await prisma.$queryRawUnsafe(sql)
 
-        if(rsTamanhos.length > 0){
-            return rsTamanhos
+        if(rsUsuarios.length > 0){
+            return rsUsuarios
         }
         
     } catch (error) {
@@ -26,15 +26,15 @@ const selectAllTamanhoPizzas = async function(){
     }
 }
 
-const insertTamanhoPizza = async function(nomeTamanho){
+const insertUsuario = async function(usuario){
     try {
 
-        let sql = `insert into tbl_tamanho_pizza(tamanho)
-                                    values('${nomeTamanho.tamanho}')`
+        let sql = `insert into tbl_usuario(nome, login, senha, nivel_permissao, id_pizzaria)
+                    values('${usuario.nome}', md5('${usuario.login}'), md5('${usuario.senha}'), ${usuario.nivel_permissao}, 1)`
 
-        const rsTamanho = await prisma.$executeRawUnsafe(sql)
+        const rsUsuario = await prisma.$executeRawUnsafe(sql)
 
-        if(rsTamanho){
+        if(rsUsuario){
             return true
         }else{
             return false
@@ -45,7 +45,7 @@ const insertTamanhoPizza = async function(nomeTamanho){
     }
 }
 
-const deleteTamanhoPizza = async function(id){
+const deleteUsuario = async function(id){
     try {
 
         let sql = `delete from tbl_tamanho_pizza where id = ${id}`
@@ -63,7 +63,7 @@ const deleteTamanhoPizza = async function(id){
     }
 }
 
-const selectByIdTamanhoPizza = async function(id){
+const selectByIdUsuario = async function(id){
     try {
 
         let sql = `select * from tbl_tamanho_pizza where id = ${id}`
@@ -81,7 +81,7 @@ const selectByIdTamanhoPizza = async function(id){
     }
 }
 
-const updateTamanhoPizza = async function(tamanho){
+const updateUsuario = async function(tamanho){
     try {
         let sql = `update tbl_tamanho_pizza set tamanho = '${tamanho.tamanho}' where id= ${tamanho.id}`
 
@@ -97,10 +97,13 @@ const updateTamanhoPizza = async function(tamanho){
     }
 }
 
+const autenticateUserLoginEmail = async function(usuario){
+}
+
 module.exports={
-    selectAllTamanhoPizzas,
-    insertTamanhoPizza,
-    deleteTamanhoPizza,
-    selectByIdTamanhoPizza,
-    updateTamanhoPizza
+    insertUsuario,
+    deleteUsuario,
+    selectByIdUsuario,
+    updateUsuario,
+    autenticateUserLoginEmail
 }

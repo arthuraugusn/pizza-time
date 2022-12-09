@@ -16,7 +16,8 @@ const MESSAGE_ERROR = {
     INTERNAL_ERROR_DB:       'Não foi possível realizar a operação com o Banco de Dados',
     REQUIRED_ID:             'O id do registro é obrigatório neste tipo de requisição',
     NOT_FOUND_COURSE:        'Nenhum curso matriculado',
-    MAX_CHARACTERS_EXCEEDED: 'O número máximo de caracteres foi ultrapassado'
+    MAX_CHARACTERS_EXCEEDED: 'O número máximo de caracteres foi ultrapassado',
+    NOT_FOUND_ID_PRODUTO:    'O id do último produto cadastrado não pode ser encontrado'
 }
 
 const MESSAGE_SUCCESS={

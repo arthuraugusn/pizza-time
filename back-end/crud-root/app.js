@@ -13,6 +13,9 @@
             Usar no env:
             DATABASE_URL= "mysql://root:12345678@localhost:3306/db_pizza_time"
 
+            alterar contato,
+            mexer nos produtos
+
 */
 
 const express = require('express')
@@ -22,8 +25,6 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 
 const {MESSAGE_SUCCESS, MESSAGE_ERROR} = require('./modulos/config.js')
-const { json } = require('body-parser')
-const e = require('express')
 
 const app = express()
 
@@ -43,7 +44,7 @@ app.get('/v1/produtos/pizza/tamanhos', cors(), async function(request, response)
     let status
     let message
 
-    const controllerTamanho = require('./controller/controllerTamanhoPizza.js')
+    const controllerTamanho = require('./controller/controllerTamanhoProduto.js')
     
     const listaTamanhos = await controllerTamanho.listarTamanhosPizzas()
 
@@ -69,7 +70,7 @@ app.get('/v1/produto/pizza/tamanho/:id', cors(), async function(request, respons
     let message
     let id = request.params.id
 
-    const controllerTamanho = require('./controller/controllerTamanhoPizza.js')
+    const controllerTamanho = require('./controller/controllerTamanhoProduto.js')
 
     const tamanhoPizza = await controllerTamanho.buscaTamanhoIdPizza(id)
 
@@ -97,7 +98,7 @@ app.post('/v1/produto/pizza/tamanho',jsonParser, cors(), async function(request,
         let dadosBody = request.body
 
         if(JSON.stringify(dadosBody)!='{}'){
-            const controllerTamanho = require('./controller/controllerTamanhoPizza.js')
+            const controllerTamanho = require('./controller/controllerTamanhoProduto.js')
 
             const rsNovoTamanho = await controllerTamanho.novoTamanhoPizza(dadosBody)
 
@@ -129,7 +130,7 @@ app.delete('/v1/produto/pizza/tamanho/:id', jsonParser, cors(), async function(r
     let id = request.params.id
 
     if(id != '' && id != undefined){
-        const controllerTamanho = require('./controller/controllerTamanhoPizza.js')
+        const controllerTamanho = require('./controller/controllerTamanhoProduto.js')
         const deletarTamanho = await controllerTamanho.deletarTamanhoPizza(id)
     
         status = deletarTamanho.status
@@ -163,7 +164,7 @@ app.put('/v1/produto/pizza/tamanho/:id', jsonParser, cors(), async function(requ
             if(id != '' && id != undefined){
                 dadosBody.id = id
 
-                const controllerTamanho = require('./controller/controllerTamanhoPizza.js')
+                const controllerTamanho = require('./controller/controllerTamanhoProduto.js')
 
                 const attTamanho = await controllerTamanho.atualizarTamanhoPizza(dadosBody)
 
@@ -193,7 +194,7 @@ app.get('/v1/produtos/pizza/tipos', cors(), async function(request, response){
     let status
     let message
 
-    const controllerTipo = require('./controller/controllerTipoPizza.js')
+    const controllerTipo = require('./controller/controllerTipoProduto.js')
     
     const listaTipos = await controllerTipo.listarTiposPizzas()
 
@@ -219,7 +220,7 @@ app.get('/v1/produto/pizza/tipo/:id', cors(), async function(request, response){
     let message
     let id = request.params.id
 
-    const controllerTipo = require('./controller/controllerTipoPizza.js')
+    const controllerTipo = require('./controller/controllerTipoProduto.js')
 
     const tipoPizza = await controllerTipo.buscaTipoIdPizza(id)
 
@@ -247,7 +248,7 @@ app.post('/v1/produto/pizza/tipo',jsonParser, cors(), async function(request, re
         let dadosBody = request.body
 
         if(JSON.stringify(dadosBody)!='{}'){
-            const controllerTipo = require('./controller/controllerTipoPizza.js')
+            const controllerTipo = require('./controller/controllerTipoProduto.js')
 
             const rsNovoTipo = await controllerTipo.novoTipoPizza(dadosBody)
 
@@ -279,7 +280,7 @@ app.delete('/v1/produto/pizza/tipo/:id', jsonParser, cors(), async function(requ
     let id = request.params.id
 
     if(id != '' && id != undefined){
-        const controllerTipo = require('./controller/controllerTipoPizza.js')
+        const controllerTipo = require('./controller/controllerTipoProduto.js')
         const deletarTipo = await controllerTipo.deletarTipoPizza(id)
     
         status = deletarTipo.status
@@ -313,7 +314,7 @@ app.put('/v1/produto/pizza/tipo/:id', jsonParser, cors(), async function(request
             if(id != '' && id != undefined){
                 dadosBody.id = id
 
-                const controllerTipo = require('./controller/controllerTipoPizza.js')
+                const controllerTipo = require('./controller/controllerTipoProduto.js')
 
                 const atualizarTipo = await controllerTipo.atualizarTipoPizza(dadosBody)
 
@@ -343,7 +344,7 @@ app.get('/v1/produtos/bebida/tamanhos', cors(), async function(request, response
     let status
     let message
 
-    const controllerTamanho = require('./controller/controllerTamanhoBebida.js')
+    const controllerTamanho = require('./controller/controllerTamanhoProduto.js')
     
     const listaTamanhos = await controllerTamanho.listarTamanhosBebidas()
 
@@ -369,7 +370,7 @@ app.get('/v1/produto/bebida/tamanho/:id', cors(), async function(request, respon
     let message
     let id = request.params.id
 
-    const controllerTamanho = require('./controller/controllerTamanhoBebida.js')
+    const controllerTamanho = require('./controller/controllerTipoProduto.js')
 
     const tamanhoPizza = await controllerTamanho.buscaTamanhoIdBebida(id)
 
@@ -397,7 +398,7 @@ app.post('/v1/produto/bebida/tamanho',jsonParser, cors(), async function(request
         let dadosBody = request.body
 
         if(JSON.stringify(dadosBody)!='{}'){
-            const controllerTamanho = require('./controller/controllerTamanhoBebida.js')
+            const controllerTamanho = require('./controller/controllerTamanhoProduto.js')
 
             const rsNovoTamanho = await controllerTamanho.novoTamanhoBebida(dadosBody)
 
@@ -429,7 +430,7 @@ app.delete('/v1/produto/bebida/tamanho/:id', jsonParser, cors(), async function(
     let id = request.params.id
 
     if(id != '' && id != undefined){
-        const controllerTamanho = require('./controller/controllerTamanhoBebida')
+        const controllerTamanho = require('./controller/controllerTamanhoProduto.js')
         const deletarTamanho = await controllerTamanho.deletarTamanhoBebida(id)
     
         status = deletarTamanho.status
@@ -463,7 +464,7 @@ app.put('/v1/produto/bebida/tamanho/:id', jsonParser, cors(), async function(req
             if(id != '' && id != undefined){
                 dadosBody.id = id
 
-                const controllerTamanho = require('./controller/controllerTamanhoBebida')
+                const controllerTamanho = require('./controller/controllerTamanhoProduto.js')
 
                 const attTamanho = await controllerTamanho.atualizarTamanhoBebida(dadosBody)
 
@@ -493,7 +494,7 @@ app.get('/v1/produtos/bebida/tipos', cors(), async function(request, response){
     let status
     let message
 
-    const controllerTipo = require('./controller/controllerTipoBebida.js')
+    const controllerTipo = require('./controller/controllerTipoProduto.js')
     
     const listaTipos = await controllerTipo.listarTiposBebidas()
 
@@ -519,7 +520,7 @@ app.get('/v1/produto/bebida/tipo/:id', cors(), async function(request, response)
     let message
     let id = request.params.id
 
-    const controllerTipo = require('./controller/controllerTipoBebida.js')
+    const controllerTipo = require('./controller/controllerTipoProduto.js')
 
     const tipoPizza = await controllerTipo.buscaTipoIdBebida(id)
 
@@ -547,7 +548,7 @@ app.post('/v1/produto/bebida/tipo',jsonParser, cors(), async function(request, r
         let dadosBody = request.body
 
         if(JSON.stringify(dadosBody)!='{}'){
-            const controllerTipo = require('./controller/controllerTipoBebida.js')
+            const controllerTipo = require('./controller/controllerTipoProduto.js')
 
             const rsNovoTipo = await controllerTipo.novoTipoBebida(dadosBody)
 
@@ -579,7 +580,7 @@ app.delete('/v1/produto/bebida/tipo/:id', jsonParser, cors(), async function(req
     let id = request.params.id
 
     if(id != '' && id != undefined){
-        const controllerTipo = require('./controller/controllerTipoBebida.js')
+        const controllerTipo = require('./controller/controllerTipoProduto.js')
         const deletarTipo = await controllerTipo.deletarTipoBebida(id)
     
         status = deletarTipo.status
@@ -613,7 +614,7 @@ app.put('/v1/produto/bebida/tipo/:id', jsonParser, cors(), async function(reques
             if(id != '' && id != undefined){
                 dadosBody.id = id
 
-                const controllerTipo = require('./controller/controllerTipoBebida.js')
+                const controllerTipo = require('./controller/controllerTipoProduto.js')
 
                 const atualizarTipo = await controllerTipo.atualizarTipoBebida(dadosBody)
 
@@ -762,7 +763,7 @@ app.post('/v1/pizzaria/endereco',jsonParser, cors(), async function(request, res
         if(JSON.stringify(dadosBody)!='{}'){
             const controllerEndereco = require('./controller/controllerEnderecoPizzaria.js')
 
-            const rsPizzaria = await controllerEndereco.novoEndereco(dadosBody)
+            const rsNovoEndereco = await controllerEndereco.novoEndereco(dadosBody)
 
             if(rsNovoEndereco){
                 status = rsNovoEndereco.status
@@ -1090,7 +1091,7 @@ app.get('/v1/produtos/pizzas', cors(), async function(request, response){
     let status
     let message
 
-    const controllerPizza = require('./controller/controllerPizza.js')
+    const controllerPizza = require('./controller/controllerProdutos.js')
     
     const listar = await controllerPizza.listarPizzas()
 
@@ -1116,7 +1117,7 @@ app.get('/v1/produto/pizza/:id', cors(), async function(request, response){
     let message
     let id = request.params.id
 
-    const controllerPizza = require('./controller/controllerPizza.js')
+    const controllerPizza = require('./controller/controllerProdutos.js')
 
     const pizza = await controllerPizza.buscaIdPizza(id)
 
@@ -1144,7 +1145,7 @@ app.post('/v1/produto/pizza',jsonParser, cors(), async function(request, respons
         let dadosBody = request.body
 
         if(JSON.stringify(dadosBody)!='{}'){
-            const controllerPizza = require('./controller/controllerPizza.js')
+            const controllerPizza = require('./controller/controllerProdutos.js')
 
             const rsPizza = await controllerPizza.novaPizza(dadosBody)
 
@@ -1175,7 +1176,7 @@ app.delete('/v1/produto/pizza/:id', cors(), async function(request, response){le
     let id = request.params.id
 
     if(id != '' && id != undefined){
-        const controllerPizza = require('./controller/controllerPizza.js')
+        const controllerPizza = require('./controller/controllerProdutos.js')
         const deletar = await controllerPizza.deletarPizza(id)
     
         status = deletar.status
@@ -1209,7 +1210,7 @@ app.put('/v1/produto/pizza/:id',jsonParser, cors(), async function(request, resp
             if(id != '' && id != undefined){
                 dadosBody.id = id
 
-                const controllerPizza = require('./controller/controllerPizza.js')
+                const controllerPizza = require('./controller/controllerProdutos.js')
 
                 const atualizar = await controllerPizza.atualizarPizza(dadosBody)
 
@@ -1239,7 +1240,7 @@ app.get('/v1/produtos/bebidas', cors(), async function(request, response){
     let status
     let message
 
-    const controllerBebida = require('./controller/controllerBebida.js')
+    const controllerBebida = require('./controller/controllerProdutos.js')
     
     const listar = await controllerBebida.listarBebidas()
 
@@ -1265,7 +1266,7 @@ app.get('/v1/produto/bebida/:id', cors(), async function(request, response){
     let message
     let id = request.params.id
 
-    const controllerBebida = require('./controller/controllerBebida.js')
+    const controllerBebida = require('./controller/controllerProdutos.js')
 
     const bebida = await controllerBebida.buscaIdBebida(id)
 
@@ -1293,7 +1294,7 @@ app.post('/v1/produto/bebida',jsonParser, cors(), async function(request, respon
         let dadosBody = request.body
 
         if(JSON.stringify(dadosBody)!='{}'){
-            const controllerBebida = require('./controller/controllerBebida.js')
+            const controllerBebida = require('./controller/controllerProdutos.js')
 
             const rsBebida = await controllerBebida.novaBebida(dadosBody)
 
@@ -1324,7 +1325,7 @@ app.delete('/v1/produto/bebida/:id', cors(), async function(request, response){l
     let id = request.params.id
 
     if(id != '' && id != undefined){
-        const controllerBebida = require('./controller/controllerBebida.js')
+        const controllerBebida = require('./controller/controllerProdutos.js')
         const deletar = await controllerBebida.deletarBebida(id)
     
         status = deletar.status
@@ -1358,7 +1359,7 @@ app.put('/v1/produto/bebida/:id',jsonParser, cors(), async function(request, res
             if(id != '' && id != undefined){
                 dadosBody.id = id
 
-                const controllerBebida = require('./controller/controllerBebida.js')
+                const controllerBebida = require('./controller/controllerProdutos.js')
 
                 const atualizar = await controllerBebida.atualizarBebida(dadosBody)
 
@@ -1468,7 +1469,8 @@ app.post('/v1/pizzaria/contato/mensagem',jsonParser, cors(), async function(requ
 })
 
 //End-Point para deletar uma mensagem pelo id
-app.delete('/v1/pizzaria/contato/mensagem/:id', cors(), async function(request, response){let status
+app.delete('/v1/pizzaria/contato/mensagem/:id', cors(), async function(request, response){
+    let status
     let message
     let id = request.params.id
 

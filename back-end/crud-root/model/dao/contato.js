@@ -13,7 +13,7 @@ const prisma = new PrismaClient()
 const selectAllMessages = async function(){
     try {
 
-        let sql = `select tbl_contato.id as id_contato, tbl_contato.nome as nome_contato, tbl_contato.mensagem, tbl_contato.op_sugestao_critica, tbl_contato.email as email_contato, tbl_contato.celular as celular_contato
+        let sql = `select tbl_contato.id as id_contato, tbl_contato.nome as nome_contato, tbl_contato.mensagem, tbl_contato.op_sugestao_critica, tbl_contato.email as email_contato
         from tbl_contato
             inner join tbl_pizzaria on
                 tbl_pizzaria.id = tbl_contato.id_pizzaria
@@ -36,9 +36,10 @@ const selectAllMessages = async function(){
 const insertMessage = async function(contato){
     try {
 
-        let sql = `insert into tbl_contato(nome, mensagem, op_sugestao_critica, email, celular, id_pizzaria)
-                    values('${contato.nome}', '${contato.mensagem}', ${contato.op_sugestao_critica}, '${contato.email}', '${contato.celular}', 1)`
+        let sql = `insert into tbl_contato(nome, mensagem, op_sugestao_critica, email, id_pizzaria)
+                    values('${contato.nome}', '${contato.mensagem}', ${contato.op_sugestao_critica}, '${contato.email}', 1)`
 
+                    console.log(sql)
         const rsMessage = await prisma.$executeRawUnsafe(sql)
 
         if(rsMessage){
@@ -57,6 +58,8 @@ const deleteMessage = async function(id){
 
         let sql = `delete from tbl_contato where id = ${id}`
 
+        console.log(sql)
+
         const rsContato =await prisma.$queryRawUnsafe(sql)
 
         if(rsContato){
@@ -73,7 +76,7 @@ const deleteMessage = async function(id){
 const selectByIdMessage = async function(id){
     try {
 
-        let sql = `select tbl_contato.id as id_contato, tbl_contato.nome as nome_contato, tbl_contato.mensagem, tbl_contato.op_sugestao_critica, tbl_contato.email as email_contato, tbl_contato.celular as celular_contato
+        let sql = `select tbl_contato.id as id_contato, tbl_contato.nome as nome_contato, tbl_contato.mensagem, tbl_contato.op_sugestao_critica, tbl_contato.email as email_contato
         from tbl_contato
             inner join tbl_pizzaria on
                 tbl_pizzaria.id = tbl_contato.id_pizzaria
@@ -97,7 +100,7 @@ const selectByIdMessage = async function(id){
 
 const updateMessage = async function(contato){
     try {
-        let sql = `update tbl_contato set nome = "${contato.nome}", mensagem = "${contato.mensagem}", op_sugestao_critica = ${contato.op_sugestao_critica}, email = "${contato.email}", celular = "${contato.celular}", id_pizzaria = 1  where id= ${contato.id}`
+        let sql = `update tbl_contato set nome = "${contato.nome}", mensagem = "${contato.mensagem}", op_sugestao_critica = ${contato.op_sugestao_critica}, email = "${contato.email}", id_pizzaria = 1  where id= ${contato.id}`
 
         const rsMessage = await prisma.$executeRawUnsafe(sql)
 
