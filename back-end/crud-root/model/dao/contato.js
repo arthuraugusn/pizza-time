@@ -37,9 +37,8 @@ const insertMessage = async function(contato){
     try {
 
         let sql = `insert into tbl_contato(nome, mensagem, op_sugestao_critica, email, id_pizzaria)
-                    values('${contato.nome}', '${contato.mensagem}', ${contato.op_sugestao_critica}, '${contato.email}', 1)`
+                    values("${contato.nome}", "${contato.mensagem}", ${contato.op_sugestao_critica}, "${contato.email}", 1)`
 
-                    console.log(sql)
         const rsMessage = await prisma.$executeRawUnsafe(sql)
 
         if(rsMessage){
@@ -58,7 +57,6 @@ const deleteMessage = async function(id){
 
         let sql = `delete from tbl_contato where id = ${id}`
 
-        console.log(sql)
 
         const rsContato =await prisma.$queryRawUnsafe(sql)
 

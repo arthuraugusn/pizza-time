@@ -30,7 +30,7 @@ const insertEnderecoPizzaria = async function(endereco){
     try {
 
         let sql = `insert into tbl_endereco_pizzaria(rua, numero, cep, uf, cidade)
-                                                        values('${endereco.rua}', ${endereco.numero}, '${endereco.cep}', '${endereco.uf}', '${endereco.cidade}')`
+                                                        values("${endereco.rua}", ${endereco.numero}, "${endereco.cep}", "${endereco.uf}", "${endereco.cidade}")`
 
 
         const rsEndereco = await prisma.$executeRawUnsafe(sql)
@@ -85,7 +85,7 @@ const deleteEndereco = async function(id){
 
 const updateEndereco = async function(endereco){
     try {
-        let sql = `update tbl_endereco_pizzaria set rua = '${endereco.rua}', numero = ${endereco.numero}, cep = '${endereco.cep}', uf = '${endereco.uf}', cidade = '${endereco.cidade}' 
+        let sql = `update tbl_endereco_pizzaria set rua = "${endereco.rua}", numero = ${endereco.numero}, cep = "${endereco.cep}", uf = "${endereco.uf}", cidade = "${endereco.cidade}" 
                    where id= ${endereco.id}`
 
         const rsEndereco = await prisma.$executeRawUnsafe(sql)

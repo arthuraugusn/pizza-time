@@ -95,8 +95,6 @@ const updateInfosPizzaria = async function(pizzaria){
 
         const rsPizzaria = await prisma.$executeRawUnsafe(sql)
 
-        console.log(rsPizzaria)
-
         if(rsPizzaria){
             return true
         }else{

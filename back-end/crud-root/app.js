@@ -4,17 +4,17 @@
 - AUTOR: Arthur Augusto da Silva Nunes, Milena Araújo
 - DATA DE CRIAÇÃO: 28/11/2022
 - VERSÃO: 1.0
-- AMOTAÇÕES:
+- ANOTAÇÕES:
 
             npx prisma ->ve todos os comandos do prisma
             npx prisma generate -> gera novamente a migração
             npx prisma migrate dev -> conclui a migração com banco
             
             Usar no env:
-            DATABASE_URL= "mysql://root:12345678@localhost:3306/db_pizza_time"
+            DATABASE_URL= "mysql://root:12345678@localhost:3306/db_pizza_time""
 
-            alterar contato,
-            mexer nos produtos
+            INSTALAÇÃO DO JWT:
+            npm install jsonwebtoken
 
 */
 
@@ -24,7 +24,7 @@ const cors = require('cors')
 
 const bodyParser = require('body-parser')
 
-const {MESSAGE_SUCCESS, MESSAGE_ERROR} = require('./modulos/config.js')
+const { MESSAGE_ERROR} = require('./modulos/config.js')
 
 const app = express()
 

@@ -30,7 +30,7 @@ const insertTipoPizza = async function(nomeTipo){
     try {
 
         let sql = `insert into tbl_tipo_pizza(tipo)
-                                    values('${nomeTipo.tipo}')`
+                                    values("${nomeTipo.tipo}")`
 
         const rsTipo = await prisma.$executeRawUnsafe(sql)
 
@@ -83,7 +83,7 @@ const selectByIdTipoPizza = async function(id){
 
 const updateTipoPizza = async function(tipo){
     try {
-        let sql = `update tbl_tipo_pizza set tipo = '${tipo.tipo}' where id= ${tipo.id}`
+        let sql = `update tbl_tipo_pizza set tipo = "${tipo.tipo}" where id= ${tipo.id}`
 
         const rsTipo = await prisma.$executeRawUnsafe(sql)
 
@@ -117,7 +117,7 @@ const insertTipoBebida = async function(nomeTipo){
     try {
 
         let sql = `insert into tbl_tipo_bebida(tipo)
-                                    values('${nomeTipo.tipo}')`
+                                    values("${nomeTipo.tipo}")`
 
         const rsTipo = await prisma.$executeRawUnsafe(sql)
 
@@ -170,7 +170,7 @@ const selectByIdTipoBebida = async function(id){
 
 const updateTipoBebida = async function(tipo){
     try {
-        let sql = `update tbl_tipo_bebida set tipo = '${tipo.tipo}' where id= ${tipo.id}`
+        let sql = `update tbl_tipo_bebida set tipo = "${tipo.tipo}" where id= ${tipo.id}`
 
         const rsTipo = await prisma.$executeRawUnsafe(sql)
 

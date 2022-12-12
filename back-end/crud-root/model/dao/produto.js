@@ -30,7 +30,7 @@ const insertDadosProduto = async function(produto){
     try {
 
         let sql = `insert into tbl_produto(preco, foto, nome, promocao, descricao, id_pizzaria)
-                    values(${produto.preco}, '${produto.foto}', '${produto.nome}', ${produto.promocao}, '${produto.descricao}', 1)`
+                    values(${produto.preco}, "${produto.foto}", "${produto.nome}", ${produto.promocao}, "${produto.descricao}", 1)`
 
         const rsProdutos = await prisma.$executeRawUnsafe(sql)
 
@@ -84,7 +84,7 @@ const selectByIdProduto = async function(id){
 
 const updateProduto = async function(produto){
     try {
-        let sql = `update tbl_produto set preco = ${produto.preco}, foto = '${produto.foto}', promocao = ${produto.promocao}, descricao = '${produto.descricao}', 1
+        let sql = `update tbl_produto set preco = ${produto.preco}, foto = "${produto.foto}", promocao = ${produto.promocao}, descricao = "${produto.descricao}", 1
                     where id= ${produto.id}`
 
         const rsProdutos = await prisma.$executeRawUnsafe(sql)
@@ -312,8 +312,6 @@ const selectByIdBebida = async function(id){
                 tbl_endereco_pizzaria.id = tbl_pizzaria.id_endereco_pizzaria
             
             where tbl_bebida.id = ${id}    `
-
-            console.log(sql)
 
         const rsBebida = await prisma.$queryRawUnsafe(sql)
 

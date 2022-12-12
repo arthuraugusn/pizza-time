@@ -125,3 +125,5 @@ create table tbl_usuario(
     foreign key (id_pizzaria)
     references tbl_pizzaria (id)
 );
+
+select * from tbl_usuario where id = 1;
