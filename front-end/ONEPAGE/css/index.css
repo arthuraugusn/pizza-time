@@ -111,6 +111,29 @@ section {
     min-height: 236px;
 }
 
+.div_servicos{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 246px;
+}
+
+.delivery{
+    background-color: var(--pizza-coral);
+    width: 170px;
+    height: 170px;
+    border-radius: 170px;
+    box-shadow: 0px 0px 10px 3px var(--pizza-coral);
+}
+
+.retirar{
+    background-color: var(--pizza-coral);
+    width: 170px;
+    height: 170px;
+    border-radius: 170px;
+    box-shadow: 0px 0px 10px 3px var(--pizza-coral);
+}
+
 .contato{
     background-image: url(../img/Baked-Feta-Pizza-Featured-Image\ 1.svg);
     background-repeat: no-repeat;
