@@ -1532,6 +1532,193 @@ app.put('/v1/pizzaria/contato/mensagem/:id',jsonParser, cors(), async function(r
     response.json(message)
 })
 
+/****************** USUÁRIO ADMINISTRADOR ***********************/
+
+//End-Point para listar todos os usuários
+app.get('/v1/pizzaria/admin/usuarios', cors(), async function(request, response){
+    let status
+    let message
+
+    const controllerUsuario = require('./controller/controllerUsuario.js')
+    
+    const listar = await controllerUsuario.listarUsuarios()
+
+    if(listar){
+        
+        status = 200
+        message = listar
+
+    }else{
+        
+        status = 400
+        message = MESSAGE_ERROR.NOT_FOUND_DB
+
+    }
+
+    response.status(status)
+    response.json(message)
+})
+
+//End-Point para listar um usuario pelo id
+app.get('/v1/pizzaria/admin/usuario/:id', cors(), async function(request, response){
+    let status
+    let message
+    let id = request.params.id
+
+    const controllerUsuario = require('./controller/controllerUsuario.js')
+
+    const mensagem = await controllerUsuario.buscaUsuarioId(id)
+
+    if(mensagem){
+        status = 200
+        message = mensagem
+    }else{
+        status = 400
+        message = MESSAGE_ERROR.INTERNAL_ERROR_DB
+    }
+
+    response.status(status)
+    response.json(message)
+})
+
+//End-Point para inserir um novo usuário
+app.post('/v1/pizzaria/admin/usuario',jsonParser, cors(), async function(request, response){
+    let message
+    let status
+    let headerContentType
+
+    headerContentType = request.headers['content-type']
+
+    if(headerContentType == 'application/json'){
+        let dadosBody = request.body
+
+        if(JSON.stringify(dadosBody)!='{}'){
+            const controllerUsuario = require('./controller/controllerUsuario.js')
+
+            const rsUsuario = await controllerUsuario.novoUsuario(dadosBody)
+
+            if(rsUsuario){
+                status = rsUsuario.status
+                message = rsUsuario.message
+            }else{
+                status = 400
+                message = rsUsuario
+            }
+        }else{
+            status = 400
+            message = MESSAGE_ERROR.NOT_FOUND_DB
+        }
+    }else{
+        status = 400
+        message = MESSAGE_ERROR.CONTENT_TYPE
+    }
+
+    response.status(status)
+    response.json(message)
+
+})
+
+//End-Point para autenticar um usuário
+app.post('/v1/pizzaria/admin/usuario/autenticar',jsonParser, cors(), async function(request, response){
+    let message
+    let status
+    let headerContentType
+
+    headerContentType = request.headers['content-type']
+
+    if(headerContentType == 'application/json'){
+        let dadosBody = request.body
+
+        if(JSON.stringify(dadosBody)!='{}'){
+            const controllerUsuario = require('./controller/controllerUsuario.js')
+
+            const rsUsuario = await controllerUsuario.autenticarUsuario(dadosBody)
+
+            if(rsUsuario){
+                status = rsUsuario.status
+                message = rsUsuario.message
+            }else{
+                status = 400
+                message = rsUsuario
+            }
+        }else{
+            status = 400
+            message = MESSAGE_ERROR.NOT_FOUND_DB
+        }
+    }else{
+        status = 400
+        message = MESSAGE_ERROR.CONTENT_TYPE
+    }
+
+    response.status(status)
+    response.json(message)
+
+})
+
+//End-Point para deletar um usuário pelo id
+app.delete('/v1/pizzaria/admin/usuario/:id', cors(), async function(request, response){
+    let status
+    let message
+    let id = request.params.id
+
+    if(id != '' && id != undefined){
+        const controllerUsuario = require('./controller/controllerUsuario.js')
+        const deletar = await controllerUsuario.deletarUsuario(id)
+    
+        status = deletar.status
+        message = deletar.message
+    }else{
+    
+        status= 400
+        message = MESSAGE_ERROR.REQUIRED_ID
+    
+    }
+
+    response.status(status)
+    response.json(message)
+
+})
+
+//End-Point para atualizar um usuario pelo id
+app.put('/v1/pizzaria/admin/usuario/:id',jsonParser, cors(), async function(request, response){
+    let status
+    let message
+    let headerContentType
+
+    headerContentType = request.headers['content-type']
+
+    if(headerContentType== 'application/json'){
+        let dadosBody = request.body
+
+        if(JSON.stringify(dadosBody)!= '{}'){
+            let id = request.params.id
+
+            if(id != '' && id != undefined){
+                dadosBody.id = id
+
+                const controllerUsuario = require('./controller/controllerUsuario.js')
+
+                const atualizar = await controllerUsuario.atualizarUsuario(dadosBody)
+
+                status = atualizar.status
+                message = atualizar.message
+            }else{
+                status = 400
+                message= MESSAGE_ERROR.REQUIRED_ID
+            }
+        }else{
+            status = 400
+            message = MESSAGE_ERROR.EMPTY_BODY
+        }
+    }else{
+        status = 415
+        message = MESSAGE_ERROR.CONTENT_TYPE
+    }
+
+    response.status(status)
+    response.json(message)
+})
+
 app.listen(8080, function(){
     console.log('Waiting...')
 })

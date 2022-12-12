@@ -31,7 +31,7 @@ const listarPizzaria = async function(){
 }
 
 const novoProduto = async function(produto){
-    if(produto.preco =='' || produto.preco == undefined || produto.foto =='' || produto.foto == undefined|| produto.nome =='' || produto.nome == undefined ||produto.descricao =='' || produto.descricao == undefined || produto.id_pizzaria =='' || produto.id_pizzaria == undefined){
+    if(produto.preco =='' || produto.preco == undefined || produto.foto =='' || produto.foto == undefined|| produto.nome =='' || produto.nome == undefined ||produto.descricao =='' || produto.descricao == undefined){
         return {status:400, message: MESSAGE_ERROR.REQUIRED_FIELD}
     }else{
         const novoProduto = require('../model/dao/produto.js')

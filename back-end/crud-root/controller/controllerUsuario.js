@@ -10,18 +10,18 @@
 
 const {MESSAGE_SUCCESS, MESSAGE_ERROR} = require('../modulos/config.js')
 
-const listarPizzaria = async function(){
-    let pizzariaJSON = {}
+const listarUsuarios = async function(){
+    let usuariosJSON = {}
 
-    const{selectAllInfosPizzarias} = require('../model/dao/pizzaria.js')
+    const{selectAllUsuarios} = require('../model/dao/usuario.js')
 
-    const dadosPizzaria = await selectAllInfosPizzarias()
+    const usuarios = await selectAllUsuarios()
 
-    if(dadosPizzaria){
+    if(usuarios){
 
-        pizzariaJSON.pizzaria = dadosPizzaria
+        usuariosJSON.usuarios = usuarios
 
-        return pizzariaJSON
+        return usuariosJSON
 
     }
     
@@ -31,14 +31,14 @@ const listarPizzaria = async function(){
 }
 
 const novoUsuario = async function(usuario){
-    if(usuario){
+    if(usuario.nome == undefined || usuario.nome == '' || usuario.login == undefined || usuario.login == '' || usuario.senha == undefined || usuario.senha == '' || usuario.nivel_permissao == undefined || usuario.nivel_permissao == ''){
         return {status:400, message: MESSAGE_ERROR.REQUIRED_FIELD}
     }else{
-        const novosDadosPizzaria = require('../model/dao/pizzaria.js')
+        const usuarioModel = require('../model/dao/usuario.js')
 
-        const rsDadosPizzaria = await novosDadosPizzaria.insertInfosPizzaria(pizzaria)
+        const rsUsuario = await usuarioModel.insertUsuario(usuario)
 
-        if(rsDadosPizzaria){
+        if(rsUsuario){
             return {status: 200, message: MESSAGE_SUCCESS.INSERT_ITEM}
         }else{
             return {status:500, message:MESSAGE_ERROR.INTERNAL_ERROR_DB}
@@ -46,18 +46,18 @@ const novoUsuario = async function(usuario){
     }
 }
 
-const deletarDadosPizzaria = async function(idPizzaria){
-    if(idPizzaria == '' || idPizzaria == undefined){
+const deletarUsuario = async function(idUsuario){
+    if(idUsuario == '' || idUsuario == undefined){
         return {status: 400, message:MESSAGE_ERROR.REQUIRED_ID}
     }else{
-        const deletar = require('../model/dao/pizzaria.js')
+        const deletar = require('../model/dao/usuario.js')
 
-        const verificar = await deletar.selectByIdInfosPizzaria(idPizzaria)
+        const verificar = await deletar.selectByIdUsuario(idUsuario)
 
         if(verificar){
-            const rsDadosPizzaria = await deletar.deleteInfosPizzaria(idPizzaria)
+            const rsUsuario = await deletar.deleteUsuario(idUsuario)
 
-            if(rsDadosPizzaria){
+            if(rsUsuario){
                 return {status:200, message: MESSAGE_SUCCESS.DELETE_ITEM}
             }else{
                 return {status:400, message: MESSAGE_ERROR.INTERNAL_ERROR_DB}
@@ -68,39 +68,39 @@ const deletarDadosPizzaria = async function(idPizzaria){
     }
 }
 
-const buscaDadosPizzariaId = async function(idPizzaria){
-    let pizzariaJSON = {}
+const buscaUsuarioId = async function(idUsuario){
+    let usuarioJSON = {}
 
-    if(idPizzaria == '' || idPizzaria == undefined){
+    if(idUsuario == '' || idUsuario == undefined){
         return {status: 400, message:MESSAGE_ERROR.REQUIRED_ID}
     }else{
-        const {selectByIdInfosPizzaria} = require('../model/dao/pizzaria.js')
+        const {selectByIdUsuario} = require('../model/dao/usuario.js')
 
-        const pizzaria = await selectByIdInfosPizzaria(idPizzaria)
+        const usuario = await selectByIdUsuario(idUsuario)
 
-        if(pizzaria){
-            pizzariaJSON.pizzaria = pizzaria
-            return pizzariaJSON
+        if(usuario){
+            usuarioJSON.usuario = usuario
+            return usuarioJSON
         }else{
             return false
         }
     }
 }
 
-const atualizarDadosPizzaria = async function(pizzaria){
-    if(pizzaria.id == '' || pizzaria.id == undefined){
+const atualizarUsuario = async function(usuario){
+    if(usuario.id == '' || usuario.id == undefined){
         return {status: 400, message:MESSAGE_ERROR.REQUIRED_ID}
-    }else if(pizzaria.nome =='' || pizzaria.nome == undefined || pizzaria.cnpj =='' || pizzaria.cnpj == undefined|| pizzaria.telefone =='' || pizzaria.telefone == undefined||pizzaria.celular =='' || pizzaria.celular == undefined||pizzaria.id_endereco_pizzaria =='' || pizzaria.id_endereco_pizzaria == undefined){
+    }else if(usuario.nome == undefined || usuario.nome == '' || usuario.login == undefined || usuario.login == '' || usuario.senha == undefined || usuario.senha == '' || usuario.nivel_permissao == undefined || usuario.nivel_permissao == ''){
         return {status:400, message: MESSAGE_ERROR.REQUIRED_FIELD}
     }else{
-        const atualizarPizzaria = require('../model/dao/pizzaria.js')
+        const atualizarUsuario = require('../model/dao/usuario.js')
 
-        const verificar = await atualizarPizzaria.selectByIdInfosPizzaria(pizzaria.id)
+        const verificar = await atualizarUsuario.selectByIdUsuario(usuario.id)
 
         if(verificar){
-            const rsDadosPizzaria = await atualizarPizzaria.updateInfosPizzaria(pizzaria)
+            const rsUsuario = await atualizarUsuario.updateUsuario(usuario)
 
-            if(rsDadosPizzaria){
+            if(rsUsuario){
                 return {status: 200, message: MESSAGE_SUCCESS.UPDATE_ITEM}
             } else{
                 return {status: 500, message: MESSAGE_ERROR.INTERNAL_ERROR_DB}
@@ -111,6 +111,27 @@ const atualizarDadosPizzaria = async function(pizzaria){
     }
 }
 
-module.exports={
+const autenticarUsuario = async function(usuario){
+    if(usuario.login == undefined || usuario.login == '' || usuario.senha == '' || usuario.senha == undefined){
+        return {status:400, message: MESSAGE_ERROR.REQUIRED_FIELD}
+    }else{
+        const autenticarUsuario = require('../model/dao/usuario.js')
 
+        const autenticar = await autenticarUsuario.autenticateUserLoginEmail(usuario)
+
+        if(autenticar){
+            return {status:200, message: autenticar}
+        }else{
+            return {status:400, message: MESSAGE_ERROR.NOT_FOUND_DB}
+        }
+    }
+}
+
+module.exports={
+    novoUsuario,
+    listarUsuarios,
+    autenticarUsuario,
+    buscaUsuarioId,
+    deletarUsuario,
+    atualizarUsuario
 }

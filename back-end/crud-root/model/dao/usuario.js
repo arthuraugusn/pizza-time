@@ -48,11 +48,11 @@ const insertUsuario = async function(usuario){
 const deleteUsuario = async function(id){
     try {
 
-        let sql = `delete from tbl_tamanho_pizza where id = ${id}`
+        let sql = `delete from tbl_usuario where id = ${id}`
 
-        const rsTamanho =await prisma.$queryRawUnsafe(sql)
+        const rsUsuario = await prisma.$queryRawUnsafe(sql)
 
-        if(rsTamanho){
+        if(rsUsuario){
             return true
         }else{
             return false
@@ -66,12 +66,12 @@ const deleteUsuario = async function(id){
 const selectByIdUsuario = async function(id){
     try {
 
-        let sql = `select * from tbl_tamanho_pizza where id = ${id}`
+        let sql = `select * from tbl_usuario where id = ${id}`
 
-        const rsTamanho = await prisma.$queryRawUnsafe(sql)
+        const rsUsuario = await prisma.$queryRawUnsafe(sql)
 
-        if(rsTamanho.length>0){
-            return rsTamanho
+        if(rsUsuario.length>0){
+            return rsUsuario
         }else{
             return false
         }
@@ -81,13 +81,13 @@ const selectByIdUsuario = async function(id){
     }
 }
 
-const updateUsuario = async function(tamanho){
+const updateUsuario = async function(usuario){
     try {
-        let sql = `update tbl_tamanho_pizza set tamanho = '${tamanho.tamanho}' where id= ${tamanho.id}`
+        let sql = `update tbl_usuario set nome = '${usuario.nome}', login = md5('${usuario.login}'), senha = md5('${usuario.senha}'), nivel_permissao = ${usuario.nivel_permissao}, id_pizzaria = 1`
 
-        const rsTamanho = await prisma.$executeRawUnsafe(sql)
+        const rsUsuario = await prisma.$executeRawUnsafe(sql)
 
-        if(rsTamanho){
+        if(rsUsuario){
             return true
         }else{
             return false
@@ -98,6 +98,22 @@ const updateUsuario = async function(tamanho){
 }
 
 const autenticateUserLoginEmail = async function(usuario){
+
+    try {
+
+        let sql = `select * from tbl_usuario where login = md5('${usuario.login}') and senha = md5('${usuario.senha}')`
+
+        const rsUsuario = prisma.$queryRawUnsafe(sql)
+
+        if(rsUsuario){
+            return rsUsuario
+        }else{
+            return false
+        }
+        
+    } catch (error) {
+        return false
+    }
 }
 
 module.exports={
@@ -105,5 +121,6 @@ module.exports={
     deleteUsuario,
     selectByIdUsuario,
     updateUsuario,
-    autenticateUserLoginEmail
+    autenticateUserLoginEmail,
+    selectAllUsuarios
 }
