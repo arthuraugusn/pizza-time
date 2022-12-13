@@ -2,8 +2,6 @@ create database db_pizza_time;
 
 use db_pizza_time;
 
-show tables;
-
 create table tbl_endereco_pizzaria(
 	id int not null auto_increment primary key,
     rua varchar(80) not null,

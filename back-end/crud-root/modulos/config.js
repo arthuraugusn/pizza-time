@@ -17,7 +17,8 @@ const MESSAGE_ERROR = {
     REQUIRED_ID:             'O id do registro é obrigatório neste tipo de requisição',
     NOT_FOUND_COURSE:        'Nenhum curso matriculado',
     MAX_CHARACTERS_EXCEEDED: 'O número máximo de caracteres foi ultrapassado',
-    NOT_FOUND_ID_PRODUTO:    'O id do último produto cadastrado não pode ser encontrado'
+    NOT_FOUND_ID_PRODUTO:    'O id do último produto cadastrado não pode ser encontrado',
+    NOT_FOUND_TOKEN:         'O token de autenticação não foi encontrado/inserido'
 }
 
 const MESSAGE_SUCCESS={

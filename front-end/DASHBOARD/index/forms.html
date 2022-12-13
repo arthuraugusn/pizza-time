@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/forms.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link REL="SHORTCUT ICON" HREF="../img/logo-title.svg">
+    <script src="../js/formsProdutos.js" defer type="module"></script>
     <title>Dash Board</title>
 </head>
 <body>
@@ -21,36 +22,41 @@
     </header>
     <main>
         <div class="forms_login">
-            <form id="login" autocomplete="off">
-                <div>
-                    <div>
-                        <div>
-                            <label class="nome">Nome:</label>
-                            <div class="nome_tamanho">
+            <form id="login" class="forms" autocomplete="off">
+                <div class="caixa_tamanho_descricao_imagem">
+                    <div class="caixa_tamanho_descricao">
+                        <div class="caixa_tamanho">
+                            <div class="caixa_nome">
+                                <label class="nome">Nome:</label>
                                 <input type="text" class="campo_nome">
+                            </div>
+                            <div class="caixa_tamanho">
                                 <select name="tamanho" id="tamanho">
                                     <option value="">Tamanho</option>
                                     <option value="">Tamanho</option>
                                     <option value="">Tamanho</option>
                                 </select>
-                            </div>
+                            </div>  
                         </div>
-                        <div>
-                            <label class="descricao">Descrição:</label><textarea name="desc" id="campo_descricao" cols="100" rows="10"></textarea>
+                        <div class="caixa_descricao">
+                            <label class="descricao">Descrição:</label>
+                            <input type="text" class="campo_descricao">
                         </div>
                     </div>
                     <div>
                         <label class="imagem">Imagem:</label><input type="file" class="campo_imagem">
                     </div>
                 </div>
-                <div>
-                    <div class="title_preco_promocao">
+                <div class="caixa_preco_promocao_tipo">
+                    <div class="caixa_preco"> 
                         <label class="preco">Preço:</label>
-                        <label class="promocao">Promoção:</label>
+                        <input type="text" class="campo_preco">
                     </div>
-                    <div class="preco_promocao_tipo">
-                    <input type="text" class="campo_preco">
+                    <div class="caixa_promocao">
+                        <label class="promocao">Promoção:</label>
                         <input type="text" class="campo_promocao">
+                    </div>
+                    <div class="caixa_tipo">
                         <select name="tipo" id="tipo">
                             <option value="">Tipo</option>
                             <option value="">Tipo</option>

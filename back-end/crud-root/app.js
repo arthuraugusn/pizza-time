@@ -58,7 +58,7 @@ const jsonParser = bodyParser.json()
 /******************  TAMANHO DAS PIZZAS ***********************/ 
 
 //End-Point para listar todos os tamanhos de pizzas
-app.get('/v1/produtos/pizza/tamanhos', verifyJWT, cors(), async function(request, response){
+app.get('/v1/produtos/pizza/tamanhos', cors(), async function(request, response){
     let status
     let message
 

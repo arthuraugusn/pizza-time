@@ -19,6 +19,39 @@ button{
     color: var(--white);
 }
 
+.forms{
+    display: flex;
+    flex-direction: column;
+}
+
+.caixa_tamanho_descricao_imagem{
+    display: flex;
+    justify-content: space-between;
+}
+
+.caixa_tamanho_descricao{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.caixa_tamanho{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.caixa_nome{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.caixa_descricao{
+    display: flex;
+    flex-direction: column;
+}
+
 main{
     display: flex;
     flex-grow: 1;
@@ -42,24 +75,18 @@ main{
 
 label{
     font-weight: 200;
-    font-size: 30px;;
+    font-size: 2rem;
     color: var(--white);
 }
 
 input{
     font-family: 'Inter', sans-serif;
-    font-size: 20px;
+    font-size: 1.4rem;
     padding: 10px;
 }
 
-.nome_tamanho{
-    display: flex;
-    flex-direction: row;
-    gap: 150px;
-}
-
 .campo_nome{
-    width: 401px;
+    width: 70%;
     height: 58px;
     background: rgba(217, 162, 61, 0.7);
     border: 3px solid var(--pizza-vinho);
@@ -80,13 +107,10 @@ input{
     border-radius: 20px;
 }
 
-textarea{
+.campo_descricao{
     font-family: 'Inter', sans-serif;
     font-size: 20px;
     padding: 10px;
-}
-
-#campo_descricao{
     width: 767px;
     height: 176px;
     background: rgba(217, 162, 61, 0.7);
@@ -103,16 +127,15 @@ textarea{
     border-radius: 20px;
 }
 
-.title_preco_promocao{
+.caixa_preco_promocao_tipo{
     display: flex;
-    flex-direction: row;
-    gap: 437px;
+    justify-content: space-between;
+    align-items: flex-end;
 }
 
-.preco_promocao_tipo{
+.caixa_preco{
     display: flex;
-    flex-direction: row;
-    gap: 124px;
+    flex-direction: column;
 }
 
 .campo_preco{
@@ -121,6 +144,11 @@ textarea{
     background: rgba(217, 162, 61, 0.7);
     border: 3px solid var(--pizza-vinho);
     border-radius: 20px;
+}
+
+.caixa_promocao{
+    display: flex;
+    flex-direction: column;
 }
 
 .campo_promocao{
