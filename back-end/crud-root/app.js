@@ -11,7 +11,7 @@
             npx prisma migrate dev -> conclui a migração com banco
             
             Usar no env:
-            DATABASE_URL= "mysql://root:12345678@localhost:3306/db_pizza_time""
+            DATABASE_URL= "mysql://root:12345678@localhost:3306/db_pizza_time"
 
             INSTALAÇÃO DO JWT:
             npm install jsonwebtoken
@@ -25,6 +25,24 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 
 const { MESSAGE_ERROR} = require('./modulos/config.js')
+
+//Recebe o token encaminhado nas requisições e solicitar validação
+const verifyJWT = async (request, response, next)=>{
+
+    //import da biblioteca de validação
+    const jwt = require('./middleware/middlewareJWT.js')
+
+    //recebe o token encaminhado no header da requisição
+    let token = request.headers['x-access-token']
+
+    const autenticarToken = await jwt.validateJWT(token)
+
+    if(autenticarToken){
+        next()
+    }else{
+        return response.status(401).end()
+    }
+}
 
 const app = express()
 
@@ -40,7 +58,7 @@ const jsonParser = bodyParser.json()
 /******************  TAMANHO DAS PIZZAS ***********************/ 
 
 //End-Point para listar todos os tamanhos de pizzas
-app.get('/v1/produtos/pizza/tamanhos', cors(), async function(request, response){
+app.get('/v1/produtos/pizza/tamanhos', verifyJWT, cors(), async function(request, response){
     let status
     let message
 
@@ -1619,7 +1637,7 @@ app.post('/v1/pizzaria/admin/usuario',jsonParser, cors(), async function(request
 })
 
 //End-Point para autenticar um usuário
-app.post('/v1/pizzaria/admin/usuario/autenticar',jsonParser, cors(), async function(request, response){
+app.post('/v1/pizzaria/admin/usuario/autentica',jsonParser, cors(), async function(request, response){
     let message
     let status
     let headerContentType
@@ -1639,7 +1657,7 @@ app.post('/v1/pizzaria/admin/usuario/autenticar',jsonParser, cors(), async funct
                 message = rsUsuario.message
             }else{
                 status = 400
-                message = rsUsuario
+                message = rsUsuario.message
             }
         }else{
             status = 400

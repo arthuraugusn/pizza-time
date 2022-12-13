@@ -17,14 +17,33 @@ const secret = 'i05gf12aa30s09n2005'
 const expires = 80
 
 //Criação do JWT (retorna um token)
-const createJWT = async (payLoad)=>{
+const createJWT = async (payLoad)=>{4
     //criação do token onde ele receberá o id/usuario, a chave secreta e o tempo para expirar este token
+    //payload = id do usuario autenticado
+    //secret = chava secreta criada
+    //expiresIN = tempo de expiração do token
     const token = jwt.sign({userId: payLoad}, secret, {expiresIn: expires})
 
-    
+    return token
+
 }
 
 //Validação do JWT (recebe um token e verifica autenticidade)
 const validateJWT = async (token)=>{
+    let status
+    //valida a autenticidade do token
+    jwt.verify(token, secret, async function(err, decode){
+        if(err){
+            status = false
+        }else{
+            status = true
+        }
+    })
 
+    return status
+}
+
+module.exports={
+    createJWT,
+    validateJWT
 }

@@ -31,7 +31,7 @@ const insertUsuario = async function(usuario){
 
         let sql = `insert into tbl_usuario(nome, login, senha, nivel_permissao, id_pizzaria)
                     values("${usuario.nome}", md5("${usuario.login}"), md5("${usuario.senha}"), ${usuario.nivel_permissao}, 1)`
-
+                    
         const rsUsuario = await prisma.$executeRawUnsafe(sql)
 
         if(rsUsuario){
@@ -101,7 +101,7 @@ const autenticateUserLoginEmail = async function(usuario){
 
     try {
 
-        let sql = `select * from tbl_usuario where login = md5("${usuario.login}") and senha = md5("${usuario.senha}")`
+        let sql = `select tbl_usuario.id, tbl_usuario.nome from tbl_usuario where login = md5("${usuario.login}") and senha = md5("${usuario.senha}")`
 
         const rsUsuario = prisma.$queryRawUnsafe(sql)
 

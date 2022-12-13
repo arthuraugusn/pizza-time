@@ -116,10 +116,19 @@ const autenticarUsuario = async function(usuario){
         return {status:400, message: MESSAGE_ERROR.REQUIRED_FIELD}
     }else{
         const autenticarUsuario = require('../model/dao/usuario.js')
+        //import da biblioteca do jwt
+        const jwt = require('../middleware/middlewareJWT.js')
 
         const autenticar = await autenticarUsuario.autenticateUserLoginEmail(usuario)
 
         if(autenticar){
+            //gera o token pelo jwt usando o id do usuario
+            let tokenUser = await jwt.createJWT(usuario.id)
+
+            //add uma chave no json com o token do usuario
+            autenticar[0].token =  tokenUser
+
+            
             return {status:200, message: autenticar}
         }else{
             return {status:400, message: MESSAGE_ERROR.NOT_FOUND_DB}
