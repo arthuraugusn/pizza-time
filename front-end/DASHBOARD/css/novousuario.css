@@ -7,6 +7,12 @@ body{
     height: 100vh;
 }
 
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
 button{
     width: 152px;
     height: 53px;

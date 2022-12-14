@@ -41,6 +41,7 @@ const consumirArray = function (array) {
     }
 
     const img = document.createElement('img')
+    img.classList.add('img-link')
     img.src = array.foto
 
     const preco = document.createElement('span')
@@ -99,5 +100,25 @@ document.getElementById('categoria').addEventListener('change', async (event)=>{
     }
     if(event.target.value.toLowerCase() == 'pizzas'){
         pesquisarPizzas()
+    }
+})
+
+document.querySelector('.pizzas').addEventListener('click', event=>{
+    if(document.getElementById('categoria').value == 'Pizzas'){
+        if(event.target.classList.contains('img-link')){
+            localStorage.setItem("idPizza",event.target.parentElement.parentElement.id)
+        }else if(event.target.classList.contains('preco')){
+            localStorage.setItem("idPizza",event.target.parentElement.parentElement.id)
+        }else if(event.target.classList.contains('nome')){
+            localStorage.setItem("idPizza",event.target.parentElement.parentElement.id)
+        }
+    }else if(document.getElementById('categoria').value == 'Bebidas'){
+        if(event.target.classList.contains('img-link')){
+            localStorage.setItem("idBebida",event.target.parentElement.parentElement.id)
+        }else if(event.target.classList.contains('preco')){
+            localStorage.setItem("idBebida",event.target.parentElement.parentElement.id)
+        }else if(event.target.classList.contains('nome')){
+            localStorage.setItem("idBebida",event.target.parentElement.parentElement.id)
+        }
     }
 })

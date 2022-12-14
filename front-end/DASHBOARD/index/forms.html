@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="../css/forms.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link REL="SHORTCUT ICON" HREF="../img/logo-title.svg">
-    <script src="../js/formsProdutos.js" defer type="module"></script>
+    <script src="../js/formsProdutosSave.js" defer type="module"></script>
+    <script src="../js/formsProdutosDelete.js" defer type="module"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"></script>
     <title>Dash Board</title>
 </head>
 <body>
@@ -16,9 +18,14 @@
         <a href="./produtos.html">
             <img src="../img/logo-header.svg" alt="logo">
         </a>
-        <a href="./produtos.html">
-            <button>SALVAR</button>
-        </a>
+        <div class="buttons">
+            <a href="./produtos.html">
+                <button class="button_delete">DELETAR</button>
+            </a>
+            <a href="#">
+                <button class="button_save">SALVAR</button>
+            </a>
+        </div>
     </header>
     <main>
         <div class="forms_login">
@@ -32,9 +39,6 @@
                             </div>
                             <div class="caixa_tamanho">
                                 <select name="tamanho" id="tamanho">
-                                    <option value="">Tamanho</option>
-                                    <option value="">Tamanho</option>
-                                    <option value="">Tamanho</option>
                                 </select>
                             </div>  
                         </div>
@@ -58,11 +62,12 @@
                     </div>
                     <div class="caixa_tipo">
                         <select name="tipo" id="tipo">
-                            <option value="">Tipo</option>
-                            <option value="">Tipo</option>
-                            <option value="">Tipo</option>
                         </select>
                     </div>
+                    <div class="caixa_pizza_bebida">
+                        <select name="tipo" id="tipo-pizza-bebida">
+                        </select>
+                    </div>  
                 </div>
             </form>
         </div>

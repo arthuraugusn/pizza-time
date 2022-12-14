@@ -7,6 +7,19 @@ body{
     height: 100vh;
 }
 
+header{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.buttons{
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: centerz;
+}
+
 button{
     width: 152px;
     height: 53px;
@@ -35,7 +48,7 @@ button{
     gap: 50px;
 }
 
-.caixa_tamanho{
+.caixa_tamanho, .caixa_pizza_bebida{
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -159,7 +172,7 @@ input{
     border-radius: 20px;
 }
 
-#tipo{
+#tipo, #tipo-pizza-bebida{
     width: 151px;
     height: 58px;
     font-weight: 200;

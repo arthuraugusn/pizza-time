@@ -42,7 +42,7 @@ header span{
 
 main{
     display: flex;
-    flex-grow: 1;
+    width: 100vw;
     flex-direction: column;
     gap: 20px;
 }
@@ -100,6 +100,7 @@ main{
     justify-content: center;
     flex-grow: 1;
     gap: 50px;
+    height: 100%;
 }
 
 .nome{
@@ -150,6 +151,6 @@ main{
     display: flex;
     align-self: center;
     justify-content: center;
-    height: 85%;
-    width: 10%;
+    height: 100%;
+    width: 15%;
 }
