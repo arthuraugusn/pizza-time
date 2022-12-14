@@ -24,6 +24,10 @@ section {
     flex-direction: column;
 }
 
+
+
+/****************** SECTION INICIO 8 ********************/
+
 .inicio{
     display: flex;
     justify-content: center;
@@ -63,6 +67,10 @@ section {
     color: #000000;
 }
 
+
+
+/**************** SECTION PROMOÇOES ***************/
+
 .promocoes{
     background-color: var(--white);
     min-height: 600px;
@@ -78,8 +86,12 @@ section {
     padding-top: 30px;
 }
 
+
+
+/***************** SECTION CARDAPIO ***************/
+
 .cardapio{
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(../img/Baked-Feta-Pizza-Featured-Image\ 1.svg);
+    background-image: url(../img/Baked-Feta-Pizza-Featured-Image\ 1.svg);
     background-repeat: no-repeat;
     background-size: cover;
     padding-left: 112px;
@@ -106,36 +118,123 @@ section {
     padding-top: 30px;
 }
 
+
+
+/**************** SECTION SERVICOS ***************/
+
 .servicos{
     background-color: var(--white);
     min-height: 236px;
+    display: flex;
+    justify-content: center;
 }
 
-.div_servicos{
+.all_servicos{
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 246px;
+    gap: 100px;
 }
 
-.delivery{
-    background-color: var(--pizza-coral);
+.container_delivery{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.elipse_delivery{
     width: 170px;
     height: 170px;
     border-radius: 170px;
+    background: var(--pizza-coral);
     box-shadow: 0px 0px 10px 3px var(--pizza-coral);
+    display: flex;
+    align-items: center;
+    padding-left: 4px;
 }
 
-.retirar{
-    background-color: var(--pizza-coral);
+.text_delivery{
+    font-style: italic;
+    font-weight: 400;
+    font-size: 30px;
+    color: #000000;
+}
+
+.text_ou{
+    font-style: italic;
+    font-weight: 400;
+    font-size: 30px;
+    color: #000000;
+}
+
+.container_retirar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.elipse_retirar{
     width: 170px;
     height: 170px;
     border-radius: 170px;
+    background: var(--pizza-coral);
     box-shadow: 0px 0px 10px 3px var(--pizza-coral);
+    display: flex;
+    align-items: center;
+    padding-top: 24px;
+    padding-left: 22px;
 }
+
+.text_retirar{
+    font-style: italic;
+    font-weight: 400;
+    font-size: 30px;
+    color: #000000;
+}
+
+
+
+/*************** SECTION CONTATO ***************/
 
 .contato{
     background-image: url(../img/Baked-Feta-Pizza-Featured-Image\ 1.svg);
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.title_endereco{
+    font-style: italic;
+    font-weight: 400;
+    font-size: 30px;
+    color: var(--white);
+    text-shadow: 0px 4px 4px var(--pizza-coral);
+}
+
+.text_endereco{
+    font-style: italic;
+    font-weight: 400;
+    font-size: 20px;
+    color: var(--white);
+}
+
+.title_contatos{
+    font-style: italic;
+    font-weight: 400;
+    font-size: 30px;
+    color: var(--white);
+    text-shadow: 0px 4px 4px var(--pizza-coral);
+}
+
+.text_telefone{
+    font-style: italic;
+    font-weight: 400;
+    font-size: 20px;
+    color: var(--white);
+}
+
+.text_celular{
+    font-style: italic;
+    font-weight: 400;
+    font-size: 20px;
+    color: var(--white);
 }
