@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../css/index.css">
     <link rel="stylesheet" href="../css/footer.css">
     <link REL="SHORTCUT ICON" HREF="../img/logo (1).svg">
+    <script src="../js/consumoApi.js" defer type="module"></script>
     <title>Pizza Time</title>
 </head>
 <body>
@@ -54,7 +55,17 @@
         </section>
         <section id="cardapio" class="cardapio">
             <h2 class="title_cardapio">Cardápio</h2>
-            <h1 class="subtitle_favoritas">Favoritas</h1>
+            <div class="produtos_cardapio">
+                <div class="produto">
+                    <p class="subtitle_favoritas">Pizzas</p>
+                    <div class="cardapio_div_pizzas">
+                    </div>
+                </div>
+                <div class="produto">
+                    <p class="subtitle_favoritas">Bebidas</p>
+                    <div class="cardapio_div_bebidas"></div>
+                </div>
+            </div>
         </section>
         <section id="servicos" class="servicos">
             <div class="all_servicos">
@@ -74,27 +85,68 @@
             </div>
         </section>
         <section id="contato" class="contato">
-            
-            <div class="container_endereco">
-                <h1 class="title_endereco">Vá até a nossa pizzaria!</h1>
-                <p class="text_endereco">Av. Luis Carlos Berrini, nº 666</p>
-            </div>
-            <div class="container_contatos">
-                <h1 class="title_contatos">Contatos</h1>
-                <div class="telefones_redes">
-                    <div class="container_telefone">
-                        <i class="fa-solid fa-phone"></i>
-                        <span class="text_telefone">Telefone: 40828922</span>
+            <div class="contatos_forms">
+                <div class="left_contato">
+                    <div class="container_endereco">
+                        <h1 class="title_endereco">Vá até a nossa pizzaria!</h1>
+                        <p class="text_endereco">Av. Luis Carlos Berrini, nº 666</p>
                     </div>
-                    <div class="container_celular">
-                        <i class="fa-solid fa-mobile"></i>
-                        <span class="text_celular">Celular: 940828922</span>
+                    <div class="container_contatos">
+                        <h1 class="title_contatos">Contatos</h1>
+                        <div class="telefone_celular">
+                            <div class="container_telefone">
+                                <i class="fa-solid fa-phone"></i>
+                                <span class="text_telefone">Telefone: 40828922</span>
+                            </div>
+                            <div class="container_celular">
+                                <i class="fa-solid fa-mobile"></i>
+                                <span class="text_celular">Celular: 940828922</span>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <i class="fa-brands fa-square-instagram"></i>
-                        <i class="fa-brands fa-square-twitter"></i>
-                        <i class="fa-brands fa-linkedin"></i>
+                    <div class="social_container">
+                        <a href="./index.html">
+                            <i class="fa-brands fa-square-instagram"></i>
+                        </a>
+                        <a href="./index.html">
+                            <i class="fa-brands fa-square-twitter"></i>
+                        </a>
+                        <a href="./index.html">
+                            <i class="fa-brands fa-linkedin"></i>
+                        </a>
                     </div>
+                </div>
+                <div class="right_forms">
+                    <form class="form_contate_nos">
+                        <div class="container_contate_nos">
+                            <i class="fa-regular fa-envelope"></i>
+                            <h1 class="title_contate_nos">Contate-nos</h1>
+                        </div>
+                        <div>
+                            <div class="nome_whats">
+                                <div class="div_nome">
+                                    <label class="nome_usuario">Seu nome:</label><input class="campo_nome" type="text">
+                                </div>
+                                <div class="div_whatsapp">
+                                    <label class="whatsapp_usuario">Seu Whatsapp:</label><input class="campo_whatsapp" type="tel">
+                                </div>
+                            </div>
+                            <div class="div_email">
+                                <label class="email_usuario">Email:</label><input class="campo_email" type="email">
+                            </div>
+                            <h2 class="title_fale_conosco">Fale conosco!</h2>
+                            <div class="check_box">
+                                <div class="div_critica_sugestao">
+                                    <input class="campo_critica_sugestao" type="checkbox"><label class="critica_sugestao">Crítica/Sugestão</label>
+                                </div>
+                                <div class="div_duvida">
+                                    <input class="campo_duvida" type="checkbox"><label class="duvida">Dúvida</label>
+                                </div>
+                            </div>
+                            <input class="campo_texto" type="text">
+
+                        </div>
+                    </form>
                 </div>
             </div>
         </section>

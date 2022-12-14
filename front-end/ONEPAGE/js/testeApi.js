@@ -1,7 +1,7 @@
 'use strict'
 
 const getAllPizza = async()=>{
-    const url = 'http://localhost:8080/v1/produto/pizza/3'
+    const url = 'http://localhost:8080/v1/produtos/pizzas'
 
     const response = await fetch(url)
 
@@ -10,6 +10,17 @@ const getAllPizza = async()=>{
     return pizzas
 }
 
+const getAllBebidas = async()=>{
+    const url = 'http://localhost:8080/v1/produtos/bebidas'
+
+    const response = await fetch(url)
+
+    const bebidas = response.json()
+
+    return bebidas
+}
+
 export{
-    getAllPizza
+    getAllPizza,
+    getAllBebidas
 }

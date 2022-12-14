@@ -118,6 +118,73 @@ section {
     padding-top: 30px;
 }
 
+.link_forms{
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    height: 100%;
+    width: 15%;
+}
+
+
+.nome{
+    color: var(--pizza-vinho);
+    font-size: 1.8rem;
+    font-style: oblique;
+    font-weight: lighter;
+    text-align: center;
+}
+
+
+
+.preco{
+    color: var(--pizza-marrom);
+    text-shadow: 2px 0px 2px white;
+    font-size: 2rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+.caixa_produto{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    gap: 20px;
+    border-radius: 20px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: var(--pizza-amarelo);
+}
+
+
+.caixa_produto img{
+    display: flex;
+    width: 100%;
+}
+
+.produtos_cardapio{
+    display: flex;
+    align-items: center;
+}
+
+.produto{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.cardapio_div_bebidas, .cardapio_div_pizzas{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+
+
 
 
 /**************** SECTION SERVICOS ***************/
@@ -200,12 +267,34 @@ section {
     background-image: url(../img/Baked-Feta-Pizza-Featured-Image\ 1.svg);
     background-repeat: no-repeat;
     background-size: cover;
+    display: flex;
+    justify-content: center;  
+    padding-left: 200px;
+    padding-right: 200px;
+}
+
+.contatos_forms{
+    display: flex;
+    justify-content: space-between;
+}
+
+.left_contato{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 70px;
+}
+
+.container_endereco{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 .title_endereco{
     font-style: italic;
     font-weight: 400;
-    font-size: 30px;
+    font-size: 60px;
     color: var(--white);
     text-shadow: 0px 4px 4px var(--pizza-coral);
 }
@@ -213,28 +302,240 @@ section {
 .text_endereco{
     font-style: italic;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 40px;
     color: var(--white);
+}
+
+.container_contatos{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.telefone_celular{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .title_contatos{
     font-style: italic;
     font-weight: 400;
-    font-size: 30px;
+    font-size: 60px;
     color: var(--white);
     text-shadow: 0px 4px 4px var(--pizza-coral);
+}
+
+.container_telefone{
+    display: flex;
+    gap: 3px;
+    align-items: center;
 }
 
 .text_telefone{
     font-style: italic;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 40px;
     color: var(--white);
+}
+
+.container_celular{
+    display: flex;
+    gap: 3px;
+    align-items: center;
 }
 
 .text_celular{
     font-style: italic;
     font-weight: 400;
-    font-size: 20px;
+    font-size: 40px;
     color: var(--white);
+}
+
+
+.social_container{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.social_container i{
+    color: var(--white);
+    font-size: 4.5rem;
+}
+
+i{
+    color: var(--white);
+    font-size: 2rem;
+}
+
+.right_forms{
+    width: 1000px;
+    height: 800px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 20px;
+    display: flex;
+    padding: 50px;
+}
+
+.form_contate_nos{
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+}
+
+.container_contate_nos{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.title_contate_nos{
+    font-style: italic;
+    font-weight: 700;
+    font-size: 40px;
+    color: var(--white);
+}
+
+.nome_whats{
+    display: flex;
+    gap: 100px;
+    padding-bottom: 40px;
+}
+
+input{
+    padding: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 20px;
+}
+
+.div_nome{
+    display: flex;
+    flex-direction: column;
+}
+
+.nome_usuario{
+    font-style: italic;
+    font-weight: 200;
+    font-size: 30px;
+    color: var(--white);
+}
+
+.campo_nome{
+    width: 400px;
+    height: 70px;
+    background: rgba(217, 162, 61, 0.7);
+    border: 4px solid var(--pizza-vinho);
+    backdrop-filter: blur(2px);
+    border-radius: 20px;
+}
+
+.div_whatsapp{
+    display: flex;
+    flex-direction: column;
+}
+
+.whatsapp_usuario{
+    font-style: italic;
+    font-weight: 200;
+    font-size: 30px;
+    color: var(--white);
+}
+
+.campo_whatsapp{
+    width: 400px;
+    height: 70px;
+    background: rgba(217, 162, 61, 0.7);
+    border: 4px solid var(--pizza-vinho);
+    backdrop-filter: blur(2px);
+    border-radius: 20px;
+}
+
+.div_email{
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 40px;
+}
+
+.email_usuario{
+    font-style: italic;
+    font-weight: 200;
+    font-size: 30px;
+    color: var(--white);
+}
+
+.campo_email{
+    width: 400px;
+    height: 70px;
+    background: rgba(217, 162, 61, 0.7);
+    border: 4px solid var(--pizza-vinho);
+    backdrop-filter: blur(2px);
+    border-radius: 20px;
+}
+
+.title_fale_conosco{
+    font-style: italic;
+    font-weight: 200;
+    font-size: 30px;
+    color: var(--white);
+}
+
+.check_box{
+    display: flex;
+    gap: 60px;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.div_critica_sugestao{
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.campo_critica_sugestao{
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    appearance: none;
+    background: rgba(217, 162, 61, 0.7);
+    border: 4px solid var(--pizza-vinho);
+}
+
+.critica_sugestao{
+    font-style: italic;
+    font-weight: 100;
+    font-size: 30px;
+    color: var(--white);
+}
+
+.div_duvida{
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.campo_duvida{
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    appearance: none;
+    background: rgba(217, 162, 61, 0.7);
+    border: 4px solid var(--pizza-vinho);
+}
+
+.duvida{
+    font-style: italic;
+    font-weight: 100;
+    font-size: 30px;
+    color: var(--white);
+}
+
+.campo_texto{
+    width: 895px;
+    height: 184px;
+    background: rgba(217, 162, 61, 0.7);
+    border: 4px solid var(--pizza-vinho);
+    border-radius: 20px;
 }
