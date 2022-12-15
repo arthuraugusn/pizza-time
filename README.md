@@ -17,6 +17,8 @@ Este projeto tem como objetivo fornecer um site dinamico para uma pizzaria, tend
 #
 
 ### Banco de Dados
+No banco de dados utilizamos o workbench para esquematização do modelo lógico
+1. <a href="https://github.com/arthuraugusn/pizza-time-banco">Banco de Dados</a>
 
 <img height="350em" width="500em" src="./img/banco.png" alt="">   
 
@@ -36,8 +38,6 @@ O site utilizou as linguagens de marcação HTML para estruturação e CSS para 
 
 1. <a href="https://www.figma.com/file/MXa6NKlw0thT81J3xqLMdn/Protótipo?node-id=0%3A1&t=Aa6FHLd6QHsenSbp-0"> Figma</a>
 2. <a href="https://github.com/arthuraugusn/pizza-time-front-end">Front-End</a>
-
-
 
 
 
